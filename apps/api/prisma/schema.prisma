@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum VideoStatus {
+  UPLOADING
+  UPLOADED
+  FAILED
+  PENDING
+}
+
+enum VideoType {
+  PRIVATE
+  PUBLIC
+  LINK_ONLY
+}
+
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  password   String
+  profileUrl String?  @map("profile_url")
+  name       String
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  channels      Channel[]
+  comments      Comment[]
+  like          Like[]
+  subscriptions Subscription[]
+
+  @@index([email])
+}
+
+model Channel {
+  id              String   @id @default(uuid())
+  name            String
+  description     String?
+  bannerUrl       String?  @map("banner_url")
+  subscriberCount Int      @default(0) @map("subscriber_count")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  userId        String         @map("user_id")
+  user          User           @relation(fields: [userId], references: [id])
+  videos        Video[]
+  subscriptions Subscription[]
+}
+
+model Video {
+  id           String      @id @default(uuid())
+  title        String
+  description  String?
+  thumbnailUrl String?     @map("thumbnail_url")
+  videoUrl     String      @map("video_url")
+  likeCount    Int         @default(0) @map("like_count")
+  viewsCount   Int         @default(0) @map("views_count")
+  status       VideoStatus @default(UPLOADING)
+  type         VideoType   @default(PUBLIC)
+  createdAt    DateTime    @default(now()) @map("created_at")
+
+  channelId String    @map("channel_id")
+  channel   Channel   @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  comments  Comment[]
+  like      Like[]
+
+  @@index([channelId])
+}
+
+model Comment {
+  id          String   @id @default(uuid())
+  commentBody String   @map("comment_body")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  videoId String @map("video_id")
+  video   Video  @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  userId  String @map("user_id")
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Subscription {
+  id        String  @id @default(uuid())
+  userId    String  @map("user_id")
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  channelId String  @map("channel_id")
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, channelId]) // Prevents duplicate subscriptions
+}
+
+model Like {
+  id      String   @id @default(uuid())
+  likedAt DateTime @default(now()) @map("liked_at")
+
+  userId  String @map("user_id")
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  videoId String @map("video_id")
+  video   Video  @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, videoId])
+}
