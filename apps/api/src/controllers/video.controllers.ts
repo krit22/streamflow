@@ -189,21 +189,14 @@ export const getVideosController = async (req: Request, res: Response) => {
         const limit = Number(req.query.limit) || 10;
         const cursor = req.query.cursor as string;
 
-        const videos = await getVideosService(limit, cursor);
-
-        if (!videos) {
-            return res.status(404).json({
-                success: false,
-                error: {
-                    code: "NOT_FOUND",
-                    message: "Videos not found"
-                }
-            })
-        }
+        const { videos, nextCursor } = await getVideosService(limit, cursor);
 
         return res.json({
             success: true,
-            data: videos
+            data: {
+                videos,
+                nextCursor
+            }
         })
     } catch (e) {
         console.error(e)

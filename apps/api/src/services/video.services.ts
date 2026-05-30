@@ -39,7 +39,7 @@ export const updateVideoStatus = async (videoId: string, status: "UPLOADED" | "U
 
 export const getVideosService = async (limit: number, cursor?: string) => {
     const videos = await prisma.video.findMany({
-        take: limit,
+        take: limit + 1,
         ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
         where: {
             status: "UPLOADED"
@@ -49,7 +49,12 @@ export const getVideosService = async (limit: number, cursor?: string) => {
         },
         orderBy: { createdAt: "desc" }
     })
-    return videos
+
+    const hasMore = videos.length > limit
+    const page = hasMore ? videos.slice(0, limit) : videos
+    const nextCursor = hasMore ? page[page.length - 1]!.id : null
+
+    return { videos: page, nextCursor }
 }
 
 export const updateVideoService = async (
