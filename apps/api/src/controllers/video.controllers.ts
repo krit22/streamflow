@@ -2,7 +2,7 @@ import { initalizeVideoUploadSchema } from "@streamflow/validation";
 import type { Request, Response } from "express";
 import { getChannelService } from "../services/channel.services";
 import { createClient } from '@supabase/supabase-js'
-import { createVideoService } from "../services/video.services";
+import { createVideoService, getVideoById, updateVideoStatus } from "../services/video.services";
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!)
 
@@ -79,6 +79,53 @@ export const initalizeVideoUploadController = async (req: Request, res: Response
             }
         })
 
+    } catch (e) {
+        console.error(e)
+        return res.status(500).json({
+            success: false,
+            "error": {
+                "code": "INTERNAL_ERROR",
+                "message": (e as Error).message
+            }
+        })
+    }
+}
+
+export const finalizeVideoUploadController = async (req: Request, res: Response) => {
+    const videoId = req.params.videoId as string
+
+    //1. find if the video exists
+    const video = await getVideoById(videoId)
+
+    if (!video) {
+        return res.status(404).json({
+            success: false,
+            error: {
+                code: "NOT_FOUND",
+                message: "Video not found"
+            }
+        })
+    }
+
+    //2. verify if the video is owned by the user
+    if (video.channel.userId !== req.userId) {
+        return res.status(403).json({
+            success: false,
+            error: {
+                code: "PERMISSION_DENIED",
+                message: "You do not have permission to access this video"
+            }
+        })
+    }
+
+    //3. update the video status to UPLOADED
+    try {
+        await updateVideoStatus(videoId, "UPLOADED")
+
+        return res.json({
+            success: true,
+            message: "Video finalized successfully"
+        })
     } catch (e) {
         console.error(e)
         return res.status(500).json({

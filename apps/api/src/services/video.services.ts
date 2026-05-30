@@ -12,3 +12,27 @@ export const createVideoService = async (channelId: string, title: string, descr
     })
     return video
 }
+
+export const getVideoById = async (videoId: string) => {
+    const video = await prisma.video.findUnique({
+        where: {
+            id: videoId
+        },
+        include: {
+            channel: true
+        }
+    })
+    return video
+}
+
+export const updateVideoStatus = async (videoId: string, status: "UPLOADED" | "UPLOADING" | "FAILED" | "PENDING") => {
+    const video = await prisma.video.update({
+        where: {
+            id: videoId
+        },
+        data: {
+            status
+        }
+    })
+    return video
+}
