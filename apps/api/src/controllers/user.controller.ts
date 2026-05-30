@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
-import { createUserService, getUserByEmailService } from "../services/user.service";
+import { createUserService, getUserByEmailService, getUserByIdService } from "../services/user.service";
+import { getUserSubscriptionsService } from "../services/subscription.services";
 import { LoginUserSchema, RegisterUserSchema } from "@streamflow/validation"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -113,6 +114,47 @@ export const loginUserController = async (req: Request, res: Response) => {
                 "code": "INVALID_CREDENTIALS",
                 "message": "Invalid email or password"
             }
+        })
+    }
+}
+
+export const getMeController = async (req: Request, res: Response) => {
+    try {
+        const user = await getUserByIdService(req.userId as string)
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                error: { code: "NOT_FOUND", message: "User not found" }
+            })
+        }
+
+        return res.json({
+            success: true,
+            data: user
+        })
+    } catch (e) {
+        console.error(e)
+        return res.status(500).json({
+            success: false,
+            error: { code: "INTERNAL_ERROR", message: (e as Error).message }
+        })
+    }
+}
+
+export const getMySubscriptionsController = async (req: Request, res: Response) => {
+    try {
+        const subscriptions = await getUserSubscriptionsService(req.userId as string)
+
+        return res.json({
+            success: true,
+            data: subscriptions.map((sub) => sub.channel)
+        })
+    } catch (e) {
+        console.error(e)
+        return res.status(500).json({
+            success: false,
+            error: { code: "INTERNAL_ERROR", message: (e as Error).message }
         })
     }
 }

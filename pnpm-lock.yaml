@@ -36,6 +36,9 @@ importers:
       '@streamflow/validation':
         specifier: workspace:*
         version: link:../../packages/validation
+      '@supabase/supabase-js':
+        specifier: ^2.49.8
+        version: 2.106.2
       '@types/express':
         specifier: ^5.0.6
         version: 5.0.6

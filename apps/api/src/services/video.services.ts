@@ -36,3 +36,51 @@ export const updateVideoStatus = async (videoId: string, status: "UPLOADED" | "U
     })
     return video
 }
+
+export const getVideosService = async (limit: number, cursor?: string) => {
+    const videos = await prisma.video.findMany({
+        take: limit,
+        ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
+        where: {
+            status: "UPLOADED"
+        },
+        include: {
+            channel: true
+        },
+        orderBy: { createdAt: "desc" }
+    })
+    return videos
+}
+
+export const updateVideoService = async (
+    videoId: string,
+    data: { title?: string | undefined; description?: string | undefined; type?: "PUBLIC" | "PRIVATE" | "LINK_ONLY" | undefined }
+) => {
+    // Build the update object only with defined values to satisfy Prisma's exactOptionalPropertyTypes
+    const prismaData: {
+        title?: string
+        description?: string
+        type?: "PUBLIC" | "PRIVATE" | "LINK_ONLY"
+    } = {}
+    if (data.title !== undefined) prismaData.title = data.title
+    if (data.description !== undefined) prismaData.description = data.description
+    if (data.type !== undefined) prismaData.type = data.type
+
+    return prisma.video.update({
+        where: { id: videoId },
+        data: prismaData
+    })
+}
+
+export const deleteVideoService = async (videoId: string) => {
+    return prisma.video.delete({
+        where: { id: videoId }
+    })
+}
+
+export const incrementViewCountService = async (videoId: string) => {
+    return prisma.video.update({
+        where: { id: videoId },
+        data: { viewsCount: { increment: 1 } }
+    })
+}
