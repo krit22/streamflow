@@ -1,6 +1,8 @@
 import express from "express"
 import userRoutes from "./routes/user.routes"
 import channelRoutes from "./routes/channel.routes"
+import videoRoutes from "./routes/video.routes"
+
 
 const app = express()
 
@@ -15,6 +17,7 @@ app.get("/health", (req, res) => {
 
 app.use("/api/v1/users", userRoutes)
 app.use("/api/v1/channels", channelRoutes)
+app.use("/api/v1/videos", videoRoutes)
 
 
 
