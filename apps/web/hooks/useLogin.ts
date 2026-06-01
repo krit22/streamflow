@@ -1,13 +1,13 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-
+import { useAuthStore } from "@/store/useAuthStore";
 import { apiClient } from "@/lib/apiClient";
 import type { ApiSuccessResponse, LoginResponseData } from "@/lib/api.types";
-import { setAuthToken } from "@/lib/auth";
 import type { LoginUserInput } from "@streamflow/validation";
 
 export function useLogin() {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (data: LoginUserInput) => {
@@ -17,7 +17,8 @@ export function useLogin() {
       return response.data;
     },
     onSuccess: (data) => {
-      setAuthToken(data.data.token);
+      useAuthStore.getState().setUser(data.data.user);
+      queryClient.setQueryData(["session", "me"], data.data.user);
       router.push("/");
     },
   });

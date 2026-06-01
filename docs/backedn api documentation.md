@@ -2,7 +2,7 @@
 
 **Base URL:** `http://localhost:8000`  
 **API prefix:** `/api/v1`  
-**Auth (protected routes):** `Authorization: Bearer <jwt>`
+**Auth (protected routes):** HttpOnly cookie `access_token` (JWT, 1h). Clients must send requests with `credentials: include` (cross-origin CORS). Set `WEB_ORIGIN` on the API to match the web app origin.
 
 All JSON responses: `{ success, data?, error?: { code, message, issues?|details? } }`
 
@@ -26,9 +26,13 @@ All JSON responses: `{ success, data?, error?: { code, message, issues?|details?
 
 ### `POST /login`
 - **Body:** `{ email, password (min 8) }`
-- **200:** `{ success: true, data: { token } }` (JWT, 1h)
+- **200:** `{ success: true, data: { user: { id, email, name } } }` and `Set-Cookie: access_token` (HttpOnly)
 - **400:** `VALIDATION_ERROR`
 - **401:** `USER NOT FOUND` | `INVALID_PASSWORD` | `INVALID_CREDENTIALS`
+
+### `POST /logout`
+- **Auth:** No (clears session cookie if present)
+- **200:** `{ success: true }` and `Clear-Cookie: access_token`
 
 ### `GET /me` — Auth required
 - **200:** `{ success: true, data: { id, email, name, profileUrl, createdAt, channels: [...] } }`

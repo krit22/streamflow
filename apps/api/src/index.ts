@@ -1,26 +1,35 @@
-import express from "express"
-import userRoutes from "./routes/user.routes"
-import channelRoutes from "./routes/channel.routes"
-import videoRoutes from "./routes/video.routes"
-import cors from "cors"
+import "dotenv/config";
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import userRoutes from "./routes/user.routes";
+import channelRoutes from "./routes/channel.routes";
+import videoRoutes from "./routes/video.routes";
 
-const app = express()
+const app = express();
 
-app.use(express.json())
-app.use(cors())
+const webOrigin = process.env.WEB_ORIGIN ?? "http://localhost:3000";
+
+app.use(
+  cors({
+    origin: webOrigin,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  }),
+);
+app.use(express.json());
+app.use(cookieParser());
 
 app.get("/health", (req, res) => {
-    res.json({
-        status: "ok"
-    })
-})
+  res.json({
+    status: "ok",
+  });
+});
 
-app.use("/api/v1/users", userRoutes)
-app.use("/api/v1/channels", channelRoutes)
-app.use("/api/v1/videos", videoRoutes)
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/channels", channelRoutes);
+app.use("/api/v1/videos", videoRoutes);
 
-
-
-app.listen((8000), () => {
-    console.log("Server is running on port 8000")
-})
+app.listen(8000, () => {
+  console.log("Server is running on port 8000");
+});

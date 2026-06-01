@@ -1,7 +1,7 @@
-import type { Request, Response, NextFunction } from "express"
-import jwt from "jsonwebtoken"
+import type { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import { AUTH_COOKIE_NAME } from "../lib/authCookie";
 
-// Extend the Express Request interface to include userId
 declare global {
     namespace Express {
         interface Request {
@@ -11,12 +11,23 @@ declare global {
 }
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+    const token = req.cookies?.[AUTH_COOKIE_NAME];
 
-    const token = req.headers.authorization?.split(" ")[1]
+    if (!token) {
+        return res.status(401).json({
+            success: false,
+            error: {
+                code: "UNAUTHORIZED",
+                message: "Authentication required",
+                issues: ["Valid session cookie is required"],
+            },
+        });
+    }
 
     try {
-        // verify token
-        const decodedToken = jwt.verify(token as string, process.env.JWT_SECRET as string) as any;
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET as string) as {
+            userId: string;
+        };
 
         // add the decoded token to the request  
         req.userId = decodedToken.userId;

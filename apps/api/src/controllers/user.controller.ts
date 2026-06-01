@@ -1,12 +1,14 @@
 import type { Request, Response } from "express";
 import { createUserService, getUserByEmailService, getUserByIdService } from "../services/user.service";
 import { getUserSubscriptionsService } from "../services/subscription.services";
-import { LoginUserSchema, RegisterUserSchema } from "@streamflow/validation"
+import { LoginUserSchema, RegisterUserSchema } from "@streamflow/validation";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-// import dotenv from "dotenv"
-
-// dotenv.config()
+import {
+    AUTH_COOKIE_NAME,
+    getAuthCookieOptions,
+    getClearAuthCookieOptions,
+} from "../lib/authCookie";
 
 export const registerUserController = async (req: Request, res: Response) => {
     try {
@@ -100,12 +102,19 @@ export const loginUserController = async (req: Request, res: Response) => {
         }
 
         const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET as string, { expiresIn: "1h" });
-        res.json({
-            "success": true,
-            "data":{
-                "token": token
-            }
-        })
+
+        res.cookie(AUTH_COOKIE_NAME, token, getAuthCookieOptions());
+
+        return res.json({
+            success: true,
+            data: {
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    name: user.name,
+                },
+            },
+        });
 
     } catch (error: any) {  
         res.status(401).json({
@@ -117,6 +126,11 @@ export const loginUserController = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const logoutUserController = (_req: Request, res: Response) => {
+    res.clearCookie(AUTH_COOKIE_NAME, getClearAuthCookieOptions());
+    return res.json({ success: true });
+};
 
 export const getMeController = async (req: Request, res: Response) => {
     try {
