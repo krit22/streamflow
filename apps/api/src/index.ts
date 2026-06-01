@@ -2,12 +2,12 @@ import express from "express"
 import userRoutes from "./routes/user.routes"
 import channelRoutes from "./routes/channel.routes"
 import videoRoutes from "./routes/video.routes"
-
+import cors from "cors"
 
 const app = express()
 
 app.use(express.json())
-
+app.use(cors())
 
 app.get("/health", (req, res) => {
     res.json({
