@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NITMUN Archives</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#cfa53a",
+                        "background-light": "#fafaf9",
+                        "background-dark": "#0e1216",
+                        "surface-dark": "#16191D",
+                        "bubble-dark": "#24272B",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "sans": ["Manrope", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2E3136;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3E4146;
+        }
+        
+        .glass-panel {
+            background: rgba(14, 18, 22, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-chip {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
+        }
+        
+        .glass-chip:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(207, 165, 58, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .citation-chip {
+            display: inline-flex;
+            align-items: center;
+            vertical-align: middle;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(207, 165, 58, 0.4);
+            color: #cfa53a;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(207, 165, 58, 0.05);
+            margin: 0 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .citation-chip:hover {
+            background: rgba(207, 165, 58, 0.15);
+        }
+
+        @keyframes type-reveal {
+            0% { opacity: 0; transform: translateY(5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-reveal {
+            animation: type-reveal 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 right-0 z-40 h-16 border-b border-[#ffffff0a] bg-[#0e1216]/90 backdrop-blur-md">
+<div class="h-full max-w-5xl mx-auto px-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary text-lg">grid_view</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-sm font-bold tracking-widest text-white">NITMUN <span class="text-primary">ARCHIVES</span></h1>
+<span class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">Intelligence Core v4.2</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-gray-400 hover:text-white transition-colors p-2">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="text-gray-400 hover:text-white transition-colors p-2">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-gray-700 to-gray-600 border border-white/10" data-alt="User profile avatar gradient"></div>
+</div>
+</div>
+</header>
+<!-- Main Chat Area -->
+<main class="flex-1 overflow-y-auto w-full relative pt-20 pb-32">
+<div class="max-w-3xl mx-auto px-6 flex flex-col gap-10">
+<!-- Context / Date Divider -->
+<div class="flex justify-center pt-8 opacity-40">
+<span class="text-xs font-medium tracking-wide text-gray-400">TODAY 14:02</span>
+</div>
+<!-- Previous Message (Context) -->
+<div class="flex flex-col gap-6 opacity-60 hover:opacity-100 transition-opacity duration-500">
+<!-- User Message -->
+<div class="flex w-full justify-end">
+<div class="max-w-[75%]">
+<div class="bg-bubble-dark text-gray-100 px-5 py-3.5 rounded-2xl rounded-tr-sm border border-white/5 shadow-sm">
+<p class="text-[15px] leading-relaxed">Retrieve voting records for the 2019 environmental summit.</p>
+</div>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex w-full gap-5">
+<div class="flex-shrink-0 mt-1">
+<div class="h-7 w-7 rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 pt-0.5">
+<div class="text-[15px] text-gray-300 leading-relaxed">
+                            Accessing archival records... Found 142 voting entries for the 2019 Environmental Summit. The primary resolution passed with a 68% majority.
+                        </div>
+</div>
+</div>
+</div>
+<!-- Active Interaction -->
+<div class="flex flex-col gap-8">
+<!-- User Message -->
+<div class="flex w-full justify-end animate-reveal" style="animation-delay: 0.1s;">
+<div class="max-w-[75%] flex gap-3 justify-end items-end group">
+<span class="text-[10px] text-gray-600 mb-2 opacity-0 group-hover:opacity-100 transition-opacity">14:05</span>
+<div class="bg-[#2E3136] text-white px-5 py-3.5 rounded-2xl rounded-tr-sm shadow-md border border-white/5">
+<p class="text-[15px] leading-relaxed font-light">Summarize the economic resolutions from the 2022 committee session.</p>
+</div>
+<div class="bg-cover bg-center rounded-full size-8 shrink-0 mb-1 border border-white/10" data-alt="User profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAAG0m_tOx3eKLEQJfr3ricKACjvryiU3jLFFp9kW-lLJKFCTW9XpRGi7I8uWJ47Cs7klGcRjDuIecFhfsVdVibY6XJ_wg-P-MURd3ETSgrHguPq8bDRxVNL3fFy5zuXhuE99Zxp759AORBdtqT0W0NuJ8B2qN1Dn6pI5DLhcwzG3R_anUiJ984iBNSdWun31A01-m4f--PBff6_axTgB2EwgaWlPeo96LjtulzpU8Jw_bJ_IvH5tbcmW5OcyXc_PcAA2luZvOopGuq');"></div>
+</div>
+</div>
+<!-- AI Response Stream -->
+<div class="flex w-full gap-5 animate-reveal" style="animation-delay: 0.3s;">
+<!-- AI Icon -->
+<div class="flex-shrink-0 mt-1 relative">
+<div class="h-8 w-8 rounded-lg bg-gradient-to-br from-[#cfa53a]/20 to-[#cfa53a]/5 border border-[#cfa53a]/30 flex items-center justify-center text-primary shadow-[0_0_15px_-3px_rgba(207,165,58,0.2)]">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</div>
+<!-- Connection Line -->
+<div class="absolute top-9 left-1/2 w-px h-full bg-gradient-to-b from-[#cfa53a]/20 to-transparent -translate-x-1/2"></div>
+</div>
+<!-- Response Content -->
+<div class="flex flex-col gap-4 max-w-[90%]">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-primary tracking-wider uppercase">NITMUN Intelligence</span>
+<span class="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded border border-primary/20">ARCHIVED</span>
+</div>
+<div class="text-[15px] text-[#E0E2E6] leading-[1.7] font-light tracking-wide">
+<p class="mb-4">
+                                The 2022 Economic Council focused primarily on post-pandemic recovery frameworks. Analysis indicates a 40% shift in budget allocation towards sustainable digital infrastructure.
+                            </p>
+<p>
+                                Key outcomes included the adoption of <button class="citation-chip"><span class="material-symbols-outlined text-[12px]">article</span>Res 4.2 - Economy</button> which mandated a carbon-neutral approach to crypto-mining operations across member states. Furthermore, the committee ratified the <button class="citation-chip"><span class="material-symbols-outlined text-[12px]">equalizer</span>Global Infra Report</button>, establishing a new baseline for cross-border trade tariffs in the digital goods sector.
+                            </p>
+</div>
+<!-- Data Cards / Visual Aid (Optional context block) -->
+<div class="mt-2 flex gap-3 overflow-x-auto pb-2 scrollbar-none">
+<div class="flex items-center gap-3 p-3 rounded-lg border border-white/10 bg-white/5 min-w-[200px] hover:bg-white/10 transition-colors cursor-pointer group">
+<div class="h-8 w-8 rounded bg-[#24272B] flex items-center justify-center border border-white/5 group-hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary text-[18px]">gavel</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-gray-400">Resolution 4.2</span>
+<span class="text-xs font-semibold text-white">Passed (82% For)</span>
+</div>
+</div>
+</div>
+<!-- Action Suggestion Chips -->
+<div class="flex flex-wrap gap-2 mt-4">
+<button class="glass-chip px-4 py-2 rounded-full flex items-center gap-2 text-xs font-medium text-gray-300">
+<span class="material-symbols-outlined text-[16px] text-primary/80">compare_arrows</span>
+                                Compare with 2019
+                            </button>
+<button class="glass-chip px-4 py-2 rounded-full flex items-center gap-2 text-xs font-medium text-gray-300">
+<span class="material-symbols-outlined text-[16px] text-primary/80">ballot</span>
+                                View Voting Records
+                            </button>
+<button class="glass-chip px-4 py-2 rounded-full flex items-center gap-2 text-xs font-medium text-gray-300">
+<span class="material-symbols-outlined text-[16px] text-primary/80">download</span>
+                                Export Summary
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Input Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 p-6 flex justify-center pointer-events-none">
+<div class="glass-panel pointer-events-auto w-full max-w-2xl rounded-full p-2 pl-6 flex items-center gap-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)] border-t border-white/10 group focus-within:border-primary/50 transition-colors">
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+</button>
+<input class="flex-1 bg-transparent border-none text-white placeholder-gray-500 focus:ring-0 text-sm font-medium h-10" placeholder="Ask the archives..." type="text"/>
+<div class="flex items-center gap-2 pr-1">
+<button class="size-9 rounded-full bg-primary text-background-dark flex items-center justify-center hover:bg-[#dcb54e] transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px] font-bold">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Background Accents -->
+<div class="fixed top-20 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
+<div class="fixed bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none mix-blend-screen"></div>
+</body></html>

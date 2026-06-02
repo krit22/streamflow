@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13a4ec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101c22",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-slate-200">
+<div class="min-h-screen">
+<header class="sticky top-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center justify-between p-4 border-b border-slate-800">
+<div class="w-10"></div>
+<h1 class="text-lg font-bold text-center text-white">Profile</h1>
+<button class="w-10 h-10 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-2xl">
+            settings
+          </span>
+</button>
+</div>
+</header>
+<main class="p-4 sm:p-6">
+<div class="flex flex-col items-center gap-6">
+<div class="flex flex-col items-center gap-4 text-center">
+<img alt="Liam Carter's profile picture" class="w-24 h-24 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKSvyHkonOiiwqM74Pe50JU-mBx4Gd88iEkRFfpNAe2oW9G3l8Q2qD0C9EZ5gcy_KIBrGvUkPxN0vGnoI4Jg9UoRlRESTNKFY6M-UdqGX3aqxKyMzjxwzzRTJi6KnlUGsZrfLTq_UcXiv7QUkRpTUqrVmVXYnjdvOwg4N9bM_U6Ar-2q4pRo6r6ARsmJ3LOd2AkRiR2j3VMsgPG1XxVBNXZ1qG0dru9838tXiOUa-_1f1Hc97qjIQEnNkNmnXYBbsXOiRkpwACd-Js"/>
+<div>
+<h2 class="text-2xl font-bold text-white">Liam Carter</h2>
+<p class="text-slate-400">Software Engineer | Coffee Lover</p>
+</div>
+</div>
+<button class="w-full max-w-xs px-6 py-3 font-bold text-white transition-transform duration-200 rounded-full bg-primary hover:scale-105 active:scale-95">
+          Follow
+        </button>
+</div>
+<div class="grid grid-cols-3 gap-4 my-6 text-center">
+<div>
+<p class="text-xl font-bold text-white">125</p>
+<p class="text-sm text-slate-400">Posts</p>
+</div>
+<div>
+<p class="text-xl font-bold text-white">342</p>
+<p class="text-sm text-slate-400">Followers</p>
+</div>
+<div>
+<p class="text-xl font-bold text-white">87</p>
+<p class="text-sm text-slate-400">Following</p>
+</div>
+</div>
+<div class="border-b border-slate-800">
+<nav class="flex -mb-px">
+<a class="flex-1 py-3 text-sm font-bold text-center border-b-2 text-primary border-primary" href="#">
+            Posts
+          </a>
+<a class="flex-1 py-3 text-sm font-bold text-center text-slate-400 border-b-2 border-transparent hover:text-primary hover:border-primary/50" href="#">
+            Mentions
+          </a>
+</nav>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-4 sm:grid-cols-3">
+<div class="w-full overflow-hidden aspect-square rounded">
+<img alt="User post" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9x-jhcAUTYAnkHVQMAjkuXxO1LvLbHa-K9z8y55ssYx9Z3Y3ws8_-UuS6CI9T4Ff2YNw6DruIuRfbNbtIHzZ0g5kg3TXc2KNWyZwsat7knpUIJtEDI4JgMf9yfph35HOu3uaMG4YARpiYkr_FfOgTsHtbaDMBgSqBzb5v9x3LHQUhnWstMIYl9wz3wExno04J_NBRiZiwA5Pak8UQYSrZ_FImUpZn3jxCPd35VmHqpuihFNAemQ3c9FiAFf5VROki6JJWjINjhIgV"/>
+</div>
+<div class="w-full overflow-hidden aspect-square rounded">
+<img alt="User post" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHWLutGX2YTEc1dS_I5stDWLuOSIPEW7XJd4BPYIPE9awXtmTr7OjqPTbyFZcLsCEcjyYMCRo_va33rD3Vf_wjjtjmJJ1oEE5_pwFA2bjHCXBa1HKKRqpdzZ2X_kQJ1-_V6Jlp-5gS9l__LwrQp96sUoIPziEvGbUuBESPi4xJdJnHEKQHUW3UNCSO1Lq95nPSfTxPyAFCU89BQvDk1xeSYsrYl1vwEz3WloVjct62GnQ3Ti2E8rLS77yhqvrjZSb86ZJkibLoFrxh"/>
+</div>
+<div class="w-full overflow-hidden aspect-square rounded">
+<img alt="User post" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb-jszDnVsN6OtkkymRyNEEI3m5YgIqQ7GIDKoWNXxnE85y5sC07qjAGLhW0mOntzSnlW5ctRKZVYHE9tOIhATezIXXFHRKR5WA2dVvN44Bahmz8oIxax5vDBoT-GlKdXnYxG0qTu_LUK3o9HqsOMffVcyDlNqahGni3GYL4afVwWyaYV5pAGPF2JdgbWctGvdNo0xOk7F9FpqqrE27OUuDVMFFpJzvK0DBq_PycImulug7twb-POSBLJeZimzR2eXfDU7HsNn3PM2"/>
+</div>
+<div class="w-full overflow-hidden aspect-square rounded">
+<img alt="User post" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu-gqF9cF6nXrgiJYtyW3sstyMcrHX2XNN0pRJ1FQlBSWSBLZX-W7CAMPhePz1l7axMMGHDQ6RZ16rhv2-TH2F8hZWiutsMPJd3AsjQQ74HzmfLnoFUlEoH9pVGpl1sYi-kejx70SwvQ93zjKM4dzfO8zMA3Idul4r_yVvbyztGURcXSyzVrfB7JLEHvOGsBx8Xd09wf-oBQp8ehsyWhIsXJnZDW1Xi7PY5owUFj9YlQQiWEQYXT6RHOC495s_wC45h3OG6AQD_CNj"/>
+</div>
+<div class="w-full overflow-hidden aspect-square rounded">
+<img alt="User post" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjgV0Lxs4kcY8NGQAqqQokQ1VoTcWAXafZeKEI-zQII-m942b3_p9a5cSXpFI_rk-sXJcaXy_9lZhVCApmEuhCddBA0jv_AYcIsRk7ww7pcOluo4CQUCSthIX1F-G3VOzrdFhJxHO-aFHlcKq3sfoUDObQZ9anig8VRk3Ga6BihotEkJu0Pq5DMAqbRbT9WYjIzZbpl2JDOTImTkiFIiID2VCoamE8IDgbi6fx8e5f3pzM8YZxbwNOUbF8WlLW2mkP2FDqwO3-B4Q5"/>
+</div>
+<div class="w-full overflow-hidden aspect-square rounded">
+<img alt="User post" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJpeFNXezuprFoWtPR7fKvZannNENUR9_yls8dCDSyQazfUdeiSz-T8Oz5OKpyazi0WTYzcFJQe6k17olMtTfjhMaNS5OfGE4XBTjNIKGpQxpf3dMRoa1yhNrU0QRr8ke6_AqzzTP0yrNAvpW8wvGx-u3hIBBZCmc8fUXxp8WoaA3etBh8HlhdBYraQMH-aku0uyFXwWAHb2pKYLAS8ixczuPlnBUsezltslVbg8PhFph2Ffx6sPFnxIlDAKnNXaCPslyYDVHfzeQc"/>
+</div>
+</div>
+</main>
+</div>
+<footer class="sticky bottom-0 bg-background-dark/80 backdrop-blur-sm border-t border-slate-800">
+<nav class="flex justify-around p-2">
+<a class="flex flex-col items-center flex-1 p-2 text-slate-400 rounded-lg hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs">Home</span>
+</a>
+<a class="flex flex-col items-center flex-1 p-2 text-slate-400 rounded-lg hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="text-xs">Discover</span>
+</a>
+<a class="flex flex-col items-center flex-1 p-2 text-slate-400 rounded-lg hover:bg-primary/10 hover:text-primary" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-xs">Messages</span>
+</a>
+<a class="flex flex-col items-center flex-1 p-2 text-primary rounded-lg bg-primary/10" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs font-bold">Profile</span>
+</a>
+</nav>
+</footer>
+</body></html>

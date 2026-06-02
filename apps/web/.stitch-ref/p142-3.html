@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nearby Users</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13a4ec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="flex flex-col h-screen">
+<header class="flex items-center justify-between p-4 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined text-slate-800 dark:text-slate-200">location_on</span>
+<h1 class="text-lg font-bold text-slate-900 dark:text-white flex-1 text-center">Nearby</h1>
+<div class="w-6"></div>
+</header>
+<main class="flex-1 flex flex-col overflow-hidden">
+<div class="p-4">
+<div class="aspect-video bg-cover bg-center rounded-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCSvcKduphsS7cOGGazcbwRKI1BrFr9hu6yv-664QhWLi7wLn1b2fucmI_E0C7v94z5EHTE_-6t30AIDfrexIgrSjfitUD9hACzQUb3qz5wTcYe_-FdIm0aCe6fOlaSdN18b10DQxxfCm5ZKw3nGMftVHvLCQZivKuQoP61l8KKTMTUbzrnutv7ko1w3zVl-W02sWp9B3ak4AFfRrcwyDoWYJebdSVI2gsSz6ol96J_4kSU1CiTW5UmHh_PETxb3MenAcoTpK7cLudl");'></div>
+</div>
+<div class="px-4 pb-4">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">People Nearby</h2>
+</div>
+<div class="flex-1 overflow-y-auto px-4 pb-4">
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col items-center p-4 bg-white dark:bg-slate-800/50 rounded-lg">
+<img alt="Sophia" class="w-24 h-24 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjA1Ym3fhTrRuW3nQ1ZjpGwCVw_g651OHeMLlexjx12UgwCzoR4pvEpXmo399vvWIF-iJg95r-Za4g663ALy131RNTZ-_zWRtuP-Zeye-vnEXgjlDyAQcNolU3GtXUk7x1TSMs0_CaBwvcSUo_cUCYPYo8fdaBSQadF2tTOSslAoGiP56NSfkcrOw6Yy9P1pljNmRtYfO8Wc-GHgwoqZIKTKF3W0UOG21ME_I5iMQPNCwecPCgi-q-LDZ8_eXjFLjKWqYRHxZ5fVmr"/>
+<p class="mt-2 font-bold text-slate-900 dark:text-white">Sophia</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">100m away</p>
+<button class="mt-4 w-full bg-primary text-white py-2 rounded-full text-sm font-bold">Follow</button>
+</div>
+<div class="flex flex-col items-center p-4 bg-white dark:bg-slate-800/50 rounded-lg">
+<img alt="Ethan" class="w-24 h-24 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6m1OVXoyIJJp36kGNh-Kf9-B9THtZ2UUlnH7bfjwsVcus9BffqUINhrDnBB5vM6x6vehfrIwVJwDmgUHsyc9ZAkckZCHrwoXoF3sodZuHBJjSHUxd-guwBSopwdY8jvd0gMEsFyIi92XHE48xF3BK-sBt72VIxGDk1cgPkS63jF8CloGYLDAPokEEuyBF6h9shxj3yuQ3mczwaVk5u9JbVKojX7yOIZxqtsDXk58vm68lOZZ288noFJRn6kMM_uvxPk3b5Pb9hQav"/>
+<p class="mt-2 font-bold text-slate-900 dark:text-white">Ethan</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">250m away</p>
+<button class="mt-4 w-full bg-primary/20 dark:bg-primary/30 text-primary py-2 rounded-full text-sm font-bold">View Profile</button>
+</div>
+<div class="flex flex-col items-center p-4 bg-white dark:bg-slate-800/50 rounded-lg">
+<img alt="Olivia" class="w-24 h-24 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT_KHxSvlmPbMvHWUm-iRgiwAhWmTcQCN-YXosRTv1PTjwEExnYs8SGKs7ceQVRdW3AoxTlGbtuYulDAPBk5QDYw9eUKPRzY90XMnu3uWKQoW57-CpeYaYoG0oHekiew8eFcGZapeRVe5BytJM2Z6HtT96vuHYq-r7Roz4WR6TRpXgsx9YA8cPgP81t2JoJBHJtg6WHq8r7H2Xhij8LG0XM_qOCdTXEdlLegMESKJt3Zt8lHP-kETJtf1um_c0zA40AkvE0PdOpX38"/>
+<p class="mt-2 font-bold text-slate-900 dark:text-white">Olivia</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">300m away</p>
+<button class="mt-4 w-full bg-primary text-white py-2 rounded-full text-sm font-bold">Follow</button>
+</div>
+<div class="flex flex-col items-center p-4 bg-white dark:bg-slate-800/50 rounded-lg">
+<img alt="Liam" class="w-24 h-24 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Glwa_yU5Q_ybGX6PLQJnrnS6qVaRyoyG4SQfTNgLyIEZ1a-UIQXFsLs3fQZ5KNNvgFlu3AKxj2KrbPEyLnsYACVJARx-PIVPE8iRGbwdZfJx-Q4mPkMjqCNL0yO9cvbTrYbJLR1Y_famr89YirZHb9d5wL5ySuBhXMaj04f9kPb8waVMI7rtTQJVrmVX72kPg14e0c1XwlQQnHF5bb2j4X-KjuRjgwkZgdfWnc-crxIpIrsP777XaNkZ7yPJ8VFXqvQB97slk-O8"/>
+<p class="mt-2 font-bold text-slate-900 dark:text-white">Liam</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">400m away</p>
+<button class="mt-4 w-full bg-primary/20 dark:bg-primary/30 text-primary py-2 rounded-full text-sm font-bold">View Profile</button>
+</div>
+</div>
+</div>
+</main>
+<nav class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-4 pt-2 pb-5">
+<div class="flex justify-around">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-xs font-bold">Explore</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-xs font-medium">Friends</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-xs font-medium">Chats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+
+</body></html>

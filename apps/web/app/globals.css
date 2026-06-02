@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8fe;
+  --foreground: #1a1b1f;
+
+  /* Kinetic Cinema design tokens */
+  --on-background: #1a1b1f;
+  --primary: #000000;
+  --on-primary: #ffffff;
+  --secondary: #5d5e60;
+  --on-secondary: #ffffff;
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  --surface-container: #eeedf3;
+  --surface-container-low: #f4f3f8;
+  --secondary-fixed-dim: #c6c6c8;
+  --surface: #faf8fe;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-on-background: var(--on-background);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
+  --color-error-container: var(--error-container);
+  --color-on-error-container: var(--on-error-container);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-surface: var(--surface);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --spacing-margin-mobile: 24px;
+  --spacing-margin-desktop: 64px;
+  --spacing-container-max: 1200px;
+
+  --font-body-md: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-body-lg: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-label-md: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-headline-lg: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-headline-lg-mobile: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-display-lg: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.5;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-label-md: 14px;
+  --text-label-md--line-height: 1;
+  --text-label-md--letter-spacing: 0.1em;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: 0.05em;
+  --text-headline-lg-mobile: 24px;
+  --text-headline-lg-mobile--line-height: 1.2;
+  --text-headline-lg-mobile--letter-spacing: 0.02em;
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.02em;
+
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+  vertical-align: middle;
+}
+
+.ambient-shadow {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+}
+
+.transition-soft {
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.auth-input:focus {
+  outline: none;
+}
+
+.auth-input:not(.auth-input--error):focus {
+  border-bottom-color: var(--primary) !important;
+}
+
+.auth-input--error:focus {
+  border-bottom-color: var(--error) !important;
 }

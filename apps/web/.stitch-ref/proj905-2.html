@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NITD ClubConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1142d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101522",
+                        "foreground-light": "#0d111b",
+                        "foreground-dark": "#f8f9fc",
+                        "foreground-muted-light": "#4c5f9a",
+                        "foreground-muted-dark": "#aeb7d0",
+                        "border-light": "#e7eaf3",
+                        "border-dark": "#2d3748"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .group:hover .group-hover-effect {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-foreground-light dark:text-foreground-dark">
+<div class="min-h-screen">
+<header class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+<h1 class="text-xl font-bold text-foreground-light dark:text-foreground-dark">NITD ClubConnect</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary transition-colors" href="#">Events</a>
+<a class="text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary transition-colors" href="#">Resources</a>
+<a class="text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary transition-colors" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors">Join a Club</button>
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKKLMSIPhy87jtvm0PA_M5ohi-wV_jAtVU4-aZ7j0jqAbysUAgjPmaCYYxHDJCbrbfyeYB-XQb2_8BWre_y5HlEhfhckUCz8OBMNCr4Wd4ikQe4DNvxD3e33YbSCP0JIRm7lMREMWVRryOtg3qsDFnlM7xGSWkAlsiOHnYpcqGovi8YOEdZSKvKtPkl9817KPZ5F5AR2kObWaMtUoLxwDItuPP60_HCh5iFr7A2Rt1WcOE68KsRGmWLkaVVXZRPqzc4YVAmWoZU8o");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-12">
+<h2 class="text-4xl md:text-5xl font-bold tracking-tighter text-foreground-light dark:text-foreground-dark">Explore NITD Clubs</h2>
+<p class="mt-4 text-lg text-foreground-muted-light dark:text-foreground-muted-dark">Find your community. Discover clubs by name or domain.</p>
+</div>
+<div class="mb-10">
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-foreground-muted-light dark:text-foreground-muted-dark">
+<svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+</svg>
+</div>
+<input class="w-full h-14 pl-12 pr-4 rounded-lg bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark focus:ring-2 focus:ring-primary focus:outline-none transition-shadow" placeholder="Search clubs by name or domain..." type="search"/>
+</div>
+</div>
+<div class="mb-10">
+<div class="border-b border-border-light dark:border-border-dark flex justify-center space-x-2 sm:space-x-4 md:space-x-8 overflow-x-auto -mx-4 px-4 pb-px">
+<a class="px-3 py-3 text-sm font-bold border-b-2 border-primary text-primary whitespace-nowrap" href="#">Tech</a>
+<a class="px-3 py-3 text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary hover:border-primary/50 border-b-2 border-transparent transition-colors whitespace-nowrap" href="#">Cultural</a>
+<a class="px-3 py-3 text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary hover:border-primary/50 border-b-2 border-transparent transition-colors whitespace-nowrap" href="#">Sports</a>
+<a class="px-3 py-3 text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary hover:border-primary/50 border-b-2 border-transparent transition-colors whitespace-nowrap" href="#">Music &amp; Arts</a>
+<a class="px-3 py-3 text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary hover:border-primary/50 border-b-2 border-transparent transition-colors whitespace-nowrap" href="#">Social Impact</a>
+<a class="px-3 py-3 text-sm font-medium text-foreground-muted-light dark:text-foreground-muted-dark hover:text-primary hover:border-primary/50 border-b-2 border-transparent transition-colors whitespace-nowrap" href="#">Entrepreneurship</a>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="group bg-background-light dark:bg-border-dark p-4 rounded-lg shadow-soft hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center mb-4 group-hover-effect transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAsTrrFsWAed-tH7_smHLEL_tHahRUDfMe9ETBJsEf859O-lfUh_JHpsAFVL12diIMhFKxb6DYxxd9W4Co2yuj6Nq90NjEPoaP5vOpuJErvA53JESYxsv0bX14gQh7-bdVdl9fpWeVzEC9itbDeuWLErD357dUVFbgFFS264mVMboRkOsgTARoxB8S0SGIVFV5VEATIocFzHlBF3uMUCT5i4b2auGKUf8oRk8PZxWef-Qv-yp4vL2etrsikhn1e3PnK5cJLOo6U8NA");'></div>
+<div class="absolute bottom-2 right-2 flex gap-2">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M224,48.05a64.79,64.79,0,0,0-91.89-1.31L128,50.78,123.89,46.74A64.79,64.79,0,0,0,32,48.05a64,64,0,0,0,2.39,91.81L128,233.5l93.61-93.64A64,64,0,0,0,224,48.05Z" opacity="0.2"></path><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.78C109.74,196.47,32,147.1,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,12.59,42.12,30.34a8,8,0,0,0,15.76,0C142.22,60.59,158.55,48,178,48a46.06,46.06,0,0,1,46,46C224,147.1,146.26,196.47,128,206.78Z"></path></svg></a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M208,24H48A24,24,0,0,0,24,48V208a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V48A24,24,0,0,0,208,24Zm8,184a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Z"></path><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path><circle cx="180" cy="76" r="12"></circle></svg></a>
+</div>
+</div>
+<h3 class="text-lg font-bold text-foreground-light dark:text-foreground-dark">Tech Titans</h3>
+<p class="text-sm text-foreground-muted-light dark:text-foreground-muted-dark mt-1">Leading tech club, focusing on competitive programming and software development.</p>
+</div>
+<div class="group bg-background-light dark:bg-border-dark p-4 rounded-lg shadow-soft hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center mb-4 group-hover-effect transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDen7ztIlfoTzL51EYrzWLrFYT6c3nE38MrMhM5MOubu0mtDYuj4STLxC02nDOJy_lL4TiRLgeFDXSgsh0dKEA75vIsAPJhF8lNRVg21voT1DaMsxazzDpAwDCUlUM_jrN35ikL-3u5OcdmJUQvhjrmArbguQ4x3zXd2XAi9XrXVhxCX9y0V4zaWhXmdUyT-htCxQd7i8pS4lLHhWMfEJYsSVIteLQAfbNZqWQrV7_g7Z8wodt45HA9AYuO9ZL-KTJ6fBG_LnlX9GQ");'></div>
+<div class="absolute bottom-2 right-2 flex gap-2">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M224,48.05a64.79,64.79,0,0,0-91.89-1.31L128,50.78,123.89,46.74A64.79,64.79,0,0,0,32,48.05a64,64,0,0,0,2.39,91.81L128,233.5l93.61-93.64A64,64,0,0,0,224,48.05Z" opacity="0.2"></path><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.78C109.74,196.47,32,147.1,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,12.59,42.12,30.34a8,8,0,0,0,15.76,0C142.22,60.59,158.55,48,178,48a46.06,46.06,0,0,1,46,46C224,147.1,146.26,196.47,128,206.78Z"></path></svg></a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M208,24H48A24,24,0,0,0,24,48V208a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V48A24,24,0,0,0,208,24Zm8,184a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Z"></path><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path><circle cx="180" cy="76" r="12"></circle></svg></a>
+</div>
+</div>
+<h3 class="text-lg font-bold text-foreground-light dark:text-foreground-dark">Code Crafters</h3>
+<p class="text-sm text-foreground-muted-light dark:text-foreground-muted-dark mt-1">A community of passionate coders, organizing hackathons and coding challenges.</p>
+</div>
+<div class="group bg-background-light dark:bg-border-dark p-4 rounded-lg shadow-soft hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center mb-4 group-hover-effect transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAAlwItMRrhLeuPBzRA0oVaKNJFKkL0WHaaeBe-QPoWsNrxTUx3gX0yk9PB-EYH_Wf8Djy7NPoqI21CyFeeMssRdplfx_uTcFoX7lYDrXlw1OaDefvehWK-SAsbHBYp3XOVUw152O3j_Pug51IpVpQIHzSAlD5tuaXh8rPsHSZGTmK6ePbey46jsQBX_auCc5bnrVCj2EfmWpXoFmEyfOVdH-pmkrMtsZHJkl5Zzob0GYRqzRWoJ9Tuxzc0dPD6ozITkFLgImD3wZU");'></div>
+<div class="absolute bottom-2 right-2 flex gap-2">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M224,48.05a64.79,64.79,0,0,0-91.89-1.31L128,50.78,123.89,46.74A64.79,64.79,0,0,0,32,48.05a64,64,0,0,0,2.39,91.81L128,233.5l93.61-93.64A64,64,0,0,0,224,48.05Z" opacity="0.2"></path><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.78C109.74,196.47,32,147.1,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,12.59,42.12,30.34a8,8,0,0,0,15.76,0C142.22,60.59,158.55,48,178,48a46.06,46.06,0,0,1,46,46C224,147.1,146.26,196.47,128,206.78Z"></path></svg></a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M208,24H48A24,24,0,0,0,24,48V208a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V48A24,24,0,0,0,208,24Zm8,184a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Z"></path><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path><circle cx="180" cy="76" r="12"></circle></svg></a>
+</div>
+</div>
+<h3 class="text-lg font-bold text-foreground-light dark:text-foreground-dark">Robo Warriors</h3>
+<p class="text-sm text-foreground-muted-light dark:text-foreground-muted-dark mt-1">Robotics enthusiasts building innovative robots and competing in national events.</p>
+</div>
+<div class="group bg-background-light dark:bg-border-dark p-4 rounded-lg shadow-soft hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center mb-4 group-hover-effect transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaRkjj0C1hC3D_kMAK1XtGECZJS692225iJ5RqrHhomgn5Bc3ykxAgV-KMqYf93NswIdu3SCWmhh6zMCfQ0kjIKq5Lg-HKscm92dihZAN0Ik0kOi_wkhQVkKgyHaD7bEbmG0JdA8QIOkYuRwmRXc4MUQvorC5hi_51b9DWHj8pRyu2BawjwwWlFuWMfx-P5Wt0Og7Ap34DwF6mNl2fHYEeR-sjafMCGmwxjFgh1xJaUuHQoVFilLX4bPWFtLRPOQkcBDIeKemEEtQ");'></div>
+<div class="absolute bottom-2 right-2 flex gap-2">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M224,48.05a64.79,64.79,0,0,0-91.89-1.31L128,50.78,123.89,46.74A64.79,64.79,0,0,0,32,48.05a64,64,0,0,0,2.39,91.81L128,233.5l93.61-93.64A64,64,0,0,0,224,48.05Z" opacity="0.2"></path><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.78C109.74,196.47,32,147.1,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,12.59,42.12,30.34a8,8,0,0,0,15.76,0C142.22,60.59,158.55,48,178,48a46.06,46.06,0,0,1,46,46C224,147.1,146.26,196.47,128,206.78Z"></path></svg></a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M208,24H48A24,24,0,0,0,24,48V208a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V48A24,24,0,0,0,208,24Zm8,184a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Z"></path><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path><circle cx="180" cy="76" r="12"></circle></svg></a>
+</div>
+</div>
+<h3 class="text-lg font-bold text-foreground-light dark:text-foreground-dark">Data Dynamos</h3>
+<p class="text-sm text-foreground-muted-light dark:text-foreground-muted-dark mt-1">Data science and analytics club, exploring big data and machine learning.</p>
+</div>
+<div class="group bg-background-light dark:bg-border-dark p-4 rounded-lg shadow-soft hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center mb-4 group-hover-effect transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBqNPLvJpGe43DxS697d5Z4XC73yNuMqH7KJao6begbFWY6FIIZlq4SPk-LISb_LmKJVKb4dcdaCPJv12FLZG5F257-mFhiFfTcv-MbTO86aTRDMwhkFquEyD0SxeVm4si8aOTLsd4j2irOZ0GmEAqE7Nfg0Y1KJJ0c-AoM3gmQT9k9RKcsDWiOynZ1MMG9-67RWEfi4n84XvGBG4v5hG9r3ZpHpkBUaR3ptq-0Q2ylN-tV81hgO7LNllXpIVwJvpgNeqMNx3k-2Mg");'></div>
+<div class="absolute bottom-2 right-2 flex gap-2">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M224,48.05a64.79,64.79,0,0,0-91.89-1.31L128,50.78,123.89,46.74A64.79,64.79,0,0,0,32,48.05a64,64,0,0,0,2.39,91.81L128,233.5l93.61-93.64A64,64,0,0,0,224,48.05Z" opacity="0.2"></path><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.78C109.74,196.47,32,147.1,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,12.59,42.12,30.34a8,8,0,0,0,15.76,0C142.22,60.59,158.55,48,178,48a46.06,46.06,0,0,1,46,46C224,147.1,146.26,196.47,128,206.78Z"></path></svg></a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M208,24H48A24,24,0,0,0,24,48V208a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V48A24,24,0,0,0,208,24Zm8,184a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Z"></path><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path><circle cx="180" cy="76" r="12"></circle></svg></a>
+</div>
+</div>
+<h3 class="text-lg font-bold text-foreground-light dark:text-foreground-dark">Cyber Guardians</h3>
+<p class="text-sm text-foreground-muted-light dark:text-foreground-muted-dark mt-1">Cybersecurity club dedicated to ethical hacking and protecting digital assets.</p>
+</div>
+<div class="group bg-background-light dark:bg-border-dark p-4 rounded-lg shadow-soft hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+<div class="relative">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center mb-4 group-hover-effect transition-transform duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDcBVOEfOtWVQoLPa6SiTipo8PFDvXQXkxaiBQT-g4wiknxqxoiicG_3V96djwgms2Jp72pZXdrMfsVa_VVfgUd-7e_lvEo3CMyG5IV1Pd-1_yChI0dyzgWC-Ej02l1oN75NyVwuX3JnGf2H1bPbE-mveeY5eUsx2iyPdZgLF4YXb-wlymGhGT2uijv8CDmqlRhvv8XWOneZfQcRxmmQoowUUOS_Reh6ic4XZHltorJRJZUFG1OG34Y-fXffpz5F1EBICfGufU_IwI");'></div>
+<div class="absolute bottom-2 right-2 flex gap-2">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M224,48.05a64.79,64.79,0,0,0-91.89-1.31L128,50.78,123.89,46.74A64.79,64.79,0,0,0,32,48.05a64,64,0,0,0,2.39,91.81L128,233.5l93.61-93.64A64,64,0,0,0,224,48.05Z" opacity="0.2"></path><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.78C109.74,196.47,32,147.1,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,12.59,42.12,30.34a8,8,0,0,0,15.76,0C142.22,60.59,158.55,48,178,48a46.06,46.06,0,0,1,46,46C224,147.1,146.26,196.47,128,206.78Z"></path></svg></a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/20 text-primary hover:bg-primary/30 transition-colors" href="#"><svg fill="currentColor" height="16" viewBox="0 0 256 256" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M208,24H48A24,24,0,0,0,24,48V208a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V48A24,24,0,0,0,208,24Zm8,184a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Z"></path><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path><circle cx="180" cy="76" r="12"></circle></svg></a>
+</div>
+</div>
+<h3 class="text-lg font-bold text-foreground-light dark:text-foreground-dark">AI Innovators</h3>
+<p class="text-sm text-foreground-muted-light dark:text-foreground-muted-dark mt-1">Exploring the frontiers of artificial intelligence and machine learning.</p>
+</div>
+</div>
+<div class="mt-16 flex justify-center items-center space-x-2">
+<a class="w-10 h-10 flex items-center justify-center rounded-full text-foreground-muted-light dark:text-foreground-muted-dark hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full text-white bg-primary text-sm font-bold" href="#">1</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full text-foreground-muted-light dark:text-foreground-muted-dark hover:bg-primary/10 hover:text-primary transition-colors text-sm font-medium" href="#">2</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full text-foreground-muted-light dark:text-foreground-muted-dark hover:bg-primary/10 hover:text-primary transition-colors text-sm font-medium" href="#">3</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full text-foreground-muted-light dark:text-foreground-muted-dark hover:bg-primary/10 hover:text-primary transition-colors text-sm font-medium" href="#">4</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full text-foreground-muted-light dark:text-foreground-muted-dark hover:bg-primary/10 hover:text-primary transition-colors" href="#">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+</a>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

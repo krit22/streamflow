@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NITMUN Intelligence Archives</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#EAB308", // Amber-500 equivalent for the gold
+              "background-light": "#F3F4F6", // Zinc-100
+              "background-dark": "#09090b", // Zinc-950
+              "sidebar-dark": "#121215", // Slightly lighter than bg-dark
+              "surface-dark": "#18181b", // Zinc-900
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            boxShadow: {
+                'glow': '0 0 140px -20px rgba(234, 179, 8, 0.15)',
+            }
+          },
+        },
+      };
+    </script>
+<style>::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FDE047 0%, #EAB308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 h-screen w-full flex overflow-hidden font-sans selection:bg-primary selection:text-black">
+<aside class="w-[280px] h-full flex flex-col bg-white dark:bg-sidebar-dark border-r border-gray-200 dark:border-white/5 relative z-20 transition-all duration-300">
+<div class="p-4 flex items-center space-x-3 mt-2">
+<div class="w-10 h-10 rounded-xl border border-primary/40 flex items-center justify-center bg-primary/10 text-primary">
+<span class="material-icons-outlined text-xl">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold tracking-wide text-gray-900 dark:text-white uppercase leading-none">Nitmun</span>
+<span class="text-[10px] font-medium tracking-[0.15em] text-primary mt-1">INTELLIGENCE</span>
+</div>
+</div>
+<div class="px-6 py-4 flex justify-between items-center group cursor-pointer">
+<span class="text-[11px] font-semibold text-gray-500 dark:text-gray-400 tracking-wider uppercase">Chat History</span>
+<span class="material-icons-outlined text-gray-400 group-hover:text-primary text-base transition-colors">add</span>
+</div>
+<div class="px-3 mb-2">
+<button class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg border border-primary/50 bg-primary/5 text-primary text-sm font-medium hover:bg-primary/10 transition-all">
+<span class="material-icons-outlined text-lg">chat_bubble_outline</span>
+<span>New Chat</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto px-3 space-y-1">
+</div>
+<div class="p-4 border-t border-gray-200 dark:border-white/5">
+<button class="flex items-center space-x-3 w-full hover:bg-gray-100 dark:hover:bg-white/5 p-2 rounded-lg transition-colors group">
+<div class="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-xs font-medium text-gray-300 group-hover:border-primary/50 group-hover:text-primary transition-colors">
+                    N
+                </div>
+<div class="flex-1 text-left">
+<p class="text-sm font-medium text-gray-700 dark:text-gray-300">User Account</p>
+</div>
+<span class="material-icons-outlined text-gray-400 text-sm">more_horiz</span>
+</button>
+</div>
+</aside>
+<main class="flex-1 h-full relative flex flex-col bg-background-light dark:bg-background-dark">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none dark:opacity-40 opacity-20"></div>
+<header class="h-16 flex items-center justify-between px-6 border-b border-transparent dark:border-white/5 relative z-10">
+<div class="flex items-center space-x-3">
+<button class="p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors rounded-lg hover:bg-gray-200 dark:hover:bg-white/5">
+<span class="material-icons-outlined">menu</span>
+</button>
+<span class="text-sm font-medium text-gray-900 dark:text-gray-200">New Chat</span>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex items-center bg-gray-200 dark:bg-surface-dark rounded-full px-3 py-1 border border-gray-300 dark:border-white/10">
+<span class="text-xs text-gray-600 dark:text-gray-400 mr-2">Gemini</span>
+<span class="bg-primary text-black text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm">Groq</span>
+</div>
+</div>
+</header>
+<div class="flex-1 flex flex-col items-center justify-center relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6">
+<div class="flex flex-col items-center text-center space-y-8 mb-12">
+<div class="relative group">
+<div class="absolute -inset-1 bg-primary/20 rounded-2xl blur opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
+<div class="w-20 h-20 bg-primary/10 dark:bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-2xl flex items-center justify-center relative shadow-glow">
+<span class="material-icons-outlined text-4xl text-primary">menu_book</span>
+</div>
+</div>
+<div class="space-y-3">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        NITMUN <span class="text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400">Intelligence Archives</span>
+</h1>
+<p class="text-lg text-gray-500 dark:text-gray-400 font-light max-w-xl mx-auto">
+                        Query 8 years of historical records with AI-powered analysis
+                    </p>
+</div>
+</div>
+<div class="flex flex-wrap justify-center gap-3 mb-10">
+<button class="glass-panel group flex items-center space-x-2 px-4 py-2.5 rounded-full hover:bg-white/5 hover:border-primary/30 transition-all duration-200">
+<span class="material-icons-outlined text-primary text-sm group-hover:scale-110 transition-transform">person</span>
+<span class="text-sm text-gray-300 group-hover:text-white">SG 2018</span>
+</button>
+<button class="glass-panel group flex items-center space-x-2 px-4 py-2.5 rounded-full hover:bg-white/5 hover:border-primary/30 transition-all duration-200">
+<span class="material-icons-outlined text-primary text-sm group-hover:scale-110 transition-transform">gavel</span>
+<span class="text-sm text-gray-300 group-hover:text-white">Marvel Committee</span>
+</button>
+<button class="glass-panel group flex items-center space-x-2 px-4 py-2.5 rounded-full hover:bg-white/5 hover:border-primary/30 transition-all duration-200">
+<span class="material-icons-outlined text-primary text-sm group-hover:scale-110 transition-transform">rocket_launch</span>
+<span class="text-sm text-gray-300 group-hover:text-white">NITMUN X</span>
+</button>
+</div>
+</div>
+<div class="w-full max-w-3xl mx-auto px-4 pb-12 relative z-20">
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary/10 via-primary/30 to-primary/10 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+<div class="relative flex items-center bg-white dark:bg-[#121215] border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg dark:shadow-black/50 overflow-hidden focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/20 transition-all">
+<div class="pl-4 pr-3 text-gray-400 dark:text-gray-500">
+<div class="w-8 h-8 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center">
+<span class="material-icons-outlined text-xl">manage_search</span>
+</div>
+</div>
+<input class="w-full bg-transparent border-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-0 py-4 pl-1" placeholder="Who was the Secretary General in 2018?" type="text"/>
+<div class="pr-3 pl-2">
+<button class="w-9 h-9 flex items-center justify-center bg-primary hover:bg-yellow-400 text-black rounded-full transition-all transform active:scale-95 shadow-[0_0_15px_rgba(234,179,8,0.3)]">
+<span class="material-icons-outlined text-lg">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-4 text-center">
+<p class="text-[10px] font-mono tracking-[0.2em] text-gray-400 dark:text-gray-600 uppercase opacity-70">
+                    Authorized Intelligence Access Only
+                </p>
+</div>
+</div>
+</main>
+
+</body></html>

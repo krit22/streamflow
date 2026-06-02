@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Analysis Pending - HackMatch AI</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#258cf4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0a0a0a", // Deep charcoal/black per request
+                        "surface-dark": "#121212",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(16, 25, 34, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .scanner-line {
+            background: linear-gradient(to bottom, transparent, #258cf4, transparent);
+            box-shadow: 0 0 15px #258cf4;
+            opacity: 0.8;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden selection:bg-primary/30">
+<!-- Background Effects -->
+<div class="fixed inset-0 z-0 pointer-events-none grid-bg"></div>
+<div class="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<div class="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<!-- Main Layout -->
+<div class="relative z-10 flex flex-col min-h-screen w-full">
+<!-- TopNavBar -->
+<header class="w-full border-b border-white/10 glass-panel sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">terminal</span>
+</div>
+<h2 class="text-white text-lg font-bold tracking-wider uppercase">HackMatch AI <span class="text-xs ml-2 px-2 py-0.5 rounded bg-primary/20 text-primary border border-primary/30 font-normal">v1.0.4</span></h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-xs text-slate-400 font-medium tracking-wide">SYSTEM SECURE</span>
+</div>
+<button class="flex items-center justify-center size-10 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center border border-white/10 ring-2 ring-transparent hover:ring-primary/50 transition-all cursor-pointer" data-alt="User profile thumbnail with glitch effect" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDNGpW7GGa0_I-SJv3nFXFDB5sgEWwk7rSv_AxmDliyXK_jBAt_Yqq1hUxB9MTSvxgbVsBWAXTz-JOupaF0_XLYxLTm5inVePHeBk_IvCevqQgUU2H_ze3SxupTJTSehAcmQ8EAYkWXlcw5yAqZTftIKdO6144Vaa1RrsIJnDgqXeyDHXiiXzHpjed51UzEPCb6sUC_LyQBqVLzXYdNvdQI3Ks0aQQEuTF7An7LyBqiNMkXnwze-3p2HmJ26DjJVHJNlv9bQAHon8UK");'>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-grow flex flex-col items-center justify-center p-6 py-10 md:py-16">
+<div class="w-full max-w-4xl flex flex-col gap-8">
+<!-- Page Heading Section -->
+<div class="flex flex-col items-center text-center gap-2 mb-4">
+<p class="text-primary text-sm font-bold tracking-[0.2em] uppercase">Status: Processing</p>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight text-white mb-2">ANALYZING DIGITAL FOOTPRINT</h1>
+<p class="text-slate-400 max-w-lg text-lg">Cross-referencing cryptographic signatures and public repositories.</p>
+</div>
+<!-- Two Column Layout for Desktop -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+<!-- Left Col: Scanner Visualization -->
+<div class="glass-panel rounded-xl p-8 flex flex-col items-center justify-center relative overflow-hidden min-h-[420px] shadow-2xl shadow-black/50">
+<!-- Radar decoration lines -->
+<div class="absolute inset-0 border-[0.5px] border-white/5 rounded-xl m-2"></div>
+<div class="absolute top-4 right-4 text-xs font-mono text-primary/60">SCAN_ID_#8821X</div>
+<div class="absolute bottom-4 left-4 text-xs font-mono text-slate-500">LATENCY: 12ms</div>
+<!-- Central Scanner Element -->
+<div class="relative flex items-center justify-center mb-8 mt-4">
+<!-- Outer rotating rings (static CSS representation) -->
+<div class="absolute w-72 h-72 rounded-full border border-primary/20 border-dashed"></div>
+<div class="absolute w-64 h-64 rounded-full border border-white/5"></div>
+<div class="absolute w-80 h-80 rounded-full border border-white/5 opacity-50"></div>
+<!-- Glowing Scanner Progress Ring -->
+<svg class="w-60 h-60 -rotate-90 transform" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="transparent" r="46" stroke="rgba(37, 140, 244, 0.1)" stroke-width="2"></circle>
+<circle class="drop-shadow-[0_0_4px_rgba(37,140,244,0.8)]" cx="50" cy="50" fill="transparent" r="46" stroke="#258cf4" stroke-dasharray="290" stroke-dashoffset="72" stroke-linecap="round" stroke-width="2"></circle>
+</svg>
+<!-- User Avatar Being Scanned -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative w-40 h-40 rounded-full overflow-hidden border-2 border-primary/30 bg-surface-dark">
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="User avatar undergoing biometric scan" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbmIxSjqG4BJqSd_AfMM32LR2HxDdAKduNtduykpqhW4l_6W0Gyyn143Qrgdhiz91CUP5XY7s0EEd1eXLd9UwSptXAhByvftl3bK4mPeTkDPeMUiiAgL9f5dTjSckTXGukD6xIyaoHAS8wnV6zBqJxNR8I59KPv-RokPxFaPXblU_lEhVi7ZzTGHR_cvMul6WSZCCFsiR97xc6cCAwgMRUMvKkINf37RNDIc851r2NiQcbd5M366dDW_Scs7z2XvbsPg7HitmfBSHv");'>
+</div>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+<!-- Scan Line -->
+<div class="absolute w-full h-[2px] bg-primary top-[60%] shadow-[0_0_15px_3px_rgba(37,140,244,0.6)]"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent top-[20%] h-[80%]"></div>
+</div>
+</div>
+<!-- Percentage Badge -->
+<div class="absolute -bottom-6 bg-surface-dark border border-primary/30 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-lg shadow-primary/20">
+                                75%
+                            </div>
+</div>
+<!-- User Info -->
+<div class="text-center space-y-1 z-10 mt-2">
+<h3 class="text-white text-xl font-bold">Neo_Coder_99</h3>
+<p class="text-slate-400 text-sm">Full Stack Developer // Node.js Specialist</p>
+</div>
+</div>
+<!-- Right Col: Timeline & Action -->
+<div class="flex flex-col gap-6">
+<!-- Progress Summary -->
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-4">
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="text-slate-400 text-xs font-mono uppercase tracking-widest mb-1">Current Process</span>
+<span class="text-white font-medium">Calculating compatibility scores...</span>
+</div>
+<span class="text-primary font-bold text-xl font-mono">75%</span>
+</div>
+<!-- Simple Progress Bar -->
+<div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 shadow-[0_0_10px_#258cf4]"></div>
+</div>
+</div>
+<!-- Terminal Log / Timeline -->
+<div class="glass-panel p-6 rounded-xl flex flex-col flex-grow">
+<h3 class="text-slate-300 text-sm font-bold uppercase tracking-wider mb-6 border-b border-white/5 pb-2">System Log</h3>
+<div class="space-y-0 relative pl-2">
+<!-- Line connecting dots -->
+<div class="absolute left-[19px] top-2 bottom-4 w-px bg-slate-800"></div>
+<!-- Item 1: Done -->
+<div class="grid grid-cols-[40px_1fr] gap-x-3 pb-6 relative group">
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+</div>
+<div class="flex flex-col pt-2">
+<p class="text-slate-300 text-sm font-medium">GitHub Repositories Scanned</p>
+<p class="text-slate-500 text-xs font-mono mt-1">Found 42 public repos, 18k LOC parsed.</p>
+</div>
+</div>
+<!-- Item 2: Done -->
+<div class="grid grid-cols-[40px_1fr] gap-x-3 pb-6 relative group">
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+</div>
+<div class="flex flex-col pt-2">
+<p class="text-slate-300 text-sm font-medium">StackOverflow Activity Parsed</p>
+<p class="text-slate-500 text-xs font-mono mt-1">Top 5% in Node.js, React tags.</p>
+</div>
+</div>
+<!-- Item 3: Active -->
+<div class="grid grid-cols-[40px_1fr] gap-x-3 pb-6 relative group">
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary shadow-[0_0_10px_rgba(37,140,244,0.4)]">
+<span class="material-symbols-outlined text-[20px] animate-pulse">memory</span>
+</div>
+</div>
+<div class="flex flex-col pt-2">
+<p class="text-white text-sm font-bold">Verifying Encryption Keys</p>
+<p class="text-primary text-xs font-mono mt-1">Decryption algorithm running...</p>
+</div>
+</div>
+<!-- Item 4: Pending -->
+<div class="grid grid-cols-[40px_1fr] gap-x-3 relative group">
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-slate-800/50 border border-slate-700 flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+</div>
+<div class="flex flex-col pt-2">
+<p class="text-slate-500 text-sm font-medium">Final Compatibility Check</p>
+<p class="text-slate-600 text-xs font-mono mt-1">Pending previous tasks.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-2">
+<button class="w-full h-14 bg-slate-800 border border-slate-700 text-slate-500 font-bold tracking-widest uppercase rounded-lg cursor-not-allowed flex items-center justify-center gap-3 transition-all relative overflow-hidden group" disabled="">
+<div class="absolute inset-0 bg-slate-800/50 group-hover:bg-slate-800 transition-colors"></div>
+<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
+<span class="relative z-10">Match Me (Please Wait)</span>
+</button>
+<p class="text-center text-slate-500 text-xs mt-3 font-mono">
+                                // Awaiting scan completion to enable matching protocol
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

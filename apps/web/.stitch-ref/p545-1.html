@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attendance Summary</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2230",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white h-screen overflow-hidden flex flex-col antialiased selection:bg-primary/20">
+<!-- Top Navigation (iOS Style) -->
+<header class="flex items-center justify-between px-4 py-3 bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-gray-800 shrink-0 z-10 relative">
+<button class="flex items-center justify-center p-2 -ml-2 text-primary rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<h1 class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold tracking-tight text-center truncate max-w-[60%]">
+            Intro to Physics
+        </h1>
+<button class="flex items-center justify-center p-2 -mr-2 text-primary rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-2xl">more_horiz</span>
+</button>
+</header>
+<!-- Main Scrollable Content -->
+<main class="flex-1 overflow-y-auto overflow-x-hidden p-4 pb-32 w-full max-w-md mx-auto">
+<!-- Date & Time Context -->
+<div class="mb-6 mt-1 flex flex-col gap-1">
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Class 101 • Section B</p>
+<div class="flex items-center gap-2 text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-xl text-primary">calendar_today</span>
+<span class="font-semibold text-lg">Oct 24, 2023</span>
+<span class="text-slate-300 dark:text-slate-600">•</span>
+<span class="font-medium">10:00 AM - 11:30 AM</span>
+</div>
+</div>
+<!-- Headline -->
+<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+            Attendance Summary
+        </h2>
+<!-- Stats Cards -->
+<div class="grid grid-cols-2 gap-4 mb-6">
+<!-- Present Card -->
+<div class="flex flex-col gap-3 rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-transparent dark:border-gray-800">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-lg filled">check_circle</span>
+</div>
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Present</span>
+</div>
+<p class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight">42</p>
+</div>
+<!-- Absent Card -->
+<div class="flex flex-col gap-3 rounded-2xl p-5 bg-white dark:bg-surface-dark shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-transparent dark:border-gray-800">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-rose-600 dark:text-rose-400 text-lg filled">cancel</span>
+</div>
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Absent</span>
+</div>
+<p class="text-4xl font-bold text-slate-900 dark:text-white tracking-tight">3</p>
+</div>
+</div>
+<!-- Progress Bar Section -->
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-transparent dark:border-gray-800 mb-8">
+<div class="flex justify-between items-end mb-3">
+<div>
+<p class="text-sm text-slate-500 dark:text-slate-400 font-medium mb-1">Overall Rate</p>
+<p class="text-2xl font-bold text-primary">93%</p>
+</div>
+<span class="text-xs font-semibold px-2 py-1 rounded bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">+2% vs last week</span>
+</div>
+<div class="h-3 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 93%"></div>
+</div>
+</div>
+<!-- Student List Preview (Context) -->
+<div class="mb-4 flex items-center justify-between">
+<h3 class="text-lg font-bold">Exceptions</h3>
+<button class="text-sm font-medium text-primary hover:text-blue-600">View Full List</button>
+</div>
+<div class="flex flex-col gap-3 mb-8">
+<!-- Student Row 1 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
+<img alt="Portrait of student Sarah Jenning" class="w-full h-full object-cover" data-alt="Portrait of student Sarah Jenning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjZVdcJqGeoZH5i6vN1e_rUE3TrlTu5XeOmoXJ13P0m-3Wx13UM-dH1fqx5tFNNRqWtjM_GXCW0Vb5EuaW0iU4Ctyh1POht6yDRe0dtuyCIfF7rRkMeOvwMgaJESt1_tgrqBJw2mJJFNfBOBGpgj40LR2FT83N-pRBnTqW3O-KMr5EOs_JLijAu0k9Q2QISQhGASDFWBbYzAUfNuNHw00qPWHuoAA0kvA2amMRAbfhB8eO57URK2GlqbbFqHOaYnPFQlikES5MkOE"/>
+</div>
+<div>
+<p class="font-semibold text-sm">Sarah Jenning</p>
+<p class="text-xs text-slate-500">ID: 948201</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 text-xs font-bold">Absent</span>
+</div>
+<!-- Student Row 2 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
+<img alt="Portrait of student Mark Thompson" class="w-full h-full object-cover" data-alt="Portrait of student Mark Thompson" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSerJLLxyHatzHnmbW0iorj8CEeuqmjTDaP0zeP4YbIL8L5nc35RTVsanRSz6o4xyWXW0d4UFo20FU7RCaLzf28QwQ9kSdxzjJBV7bzOqnrW18JIJVxumnK9KDOgnekhrJhE3FNJxHpqyYs7mZzw2bMKSlRLqnbBeSJQEJ4JcRO_1XLggbf6syyJSqFHphY3-DC_h4wkT_mHv4IeRFbRbmtFDXrIJa6ciiOihXdN1gzzsH03q_UslPzK20ErCHocKONgs9nKCrQfo"/>
+</div>
+<div>
+<p class="font-semibold text-sm">Mark Thompson</p>
+<p class="text-xs text-slate-500">ID: 948205</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 text-xs font-bold">Absent</span>
+</div>
+<!-- Student Row 3 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
+<img alt="Portrait of student David Chen" class="w-full h-full object-cover" data-alt="Portrait of student David Chen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYqsm7Vf_Cy57D2Ayc7mhzost-gZv04pQVgi9PyygxTTTSUnpx0QO-zXGQgX3vm6rB37ZZev8HITNlaaLlpmi4mS5t4Vj3vlpBq7oqvs-2LbjDx-DZniei1FWZ2_2srhbD1FL5AOFNXMYkXqhDoZ2pO3G9vpPFKoYsF5GW6Nxrm4jCK5Yetk8k6RSMpYkQP8PdF-P8eZS_zZ8dehfpK0YmmLotXMjYEhzLpWE0x4BMoBmnLj7dVulDrUCyg3GYJQqxggFndNDyoYE"/>
+</div>
+<div>
+<p class="font-semibold text-sm">David Chen</p>
+<p class="text-xs text-slate-500">ID: 948222</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-xs font-bold">Late</span>
+</div>
+</div>
+<!-- Notes Section -->
+<h3 class="text-lg font-bold mb-3">Class Notes <span class="text-slate-400 font-normal text-sm ml-1">(Optional)</span></h3>
+<div class="relative">
+<textarea class="w-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-xl p-4 text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none resize-none transition-shadow" placeholder="Add any notes about today's session (e.g. fire drill, guest speaker)..." rows="3"></textarea>
+<div class="absolute bottom-3 right-3 pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 text-lg">edit_note</span>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Action -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface-light dark:bg-surface-dark border-t border-gray-200 dark:border-gray-800 p-4 pb-8 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-20">
+<div class="max-w-md mx-auto flex flex-col gap-3">
+<div class="flex justify-between items-center px-1">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Students</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">45 Counted</span>
+</div>
+<button class="w-full bg-primary hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-lg h-14 rounded-xl shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
+<span>Submit Attendance</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
+</button>
+</div>
+</footer>
+<!-- Confirmation Modal (Hidden by default, structure included for completeness as requested) -->
+<!-- To preview: remove 'hidden' class and add 'flex' -->
+<div class="hidden fixed inset-0 z-50 items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+<div class="bg-white dark:bg-surface-dark w-full max-w-sm rounded-3xl p-6 shadow-2xl transform transition-all scale-100 animate-in fade-in zoom-in duration-200">
+<div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-green-600 dark:text-green-400 text-3xl filled">check</span>
+</div>
+<h3 class="text-xl font-bold text-center mb-2">Attendance Saved</h3>
+<p class="text-center text-slate-500 dark:text-slate-400 mb-6">
+                Class 101 attendance has been successfully recorded for Oct 24.
+            </p>
+<button class="w-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-slate-900 dark:text-white font-semibold h-12 rounded-xl transition-colors">
+                Close
+            </button>
+</div>
+</div>
+</body></html>
