@@ -3,6 +3,7 @@ import type { Request, Response } from "express";
 import { getChannelService } from "../services/channel.services";
 import { createClient } from '@supabase/supabase-js'
 import { createVideoService, getVideoById, getVideosService, updateVideoStatus, updateVideoService, deleteVideoService, incrementViewCountService } from "../services/video.services";
+import { recordViewHistoryService } from "../services/viewHistory.services";
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!)
 
@@ -318,6 +319,10 @@ export const incrementViewCountController = async (req: Request, res: Response) 
         }
 
         await incrementViewCountService(videoId)
+
+        if (req.userId) {
+            await recordViewHistoryService(req.userId, videoId)
+        }
 
         return res.json({
             success: true,

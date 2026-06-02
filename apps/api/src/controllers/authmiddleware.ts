@@ -47,3 +47,27 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
         });
     }
 }
+
+/** Sets req.userId when a valid session cookie is present; continues otherwise. */
+export const optionalAuthMiddleware = (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
+    const token = req.cookies?.[AUTH_COOKIE_NAME];
+
+    if (!token) {
+        return next();
+    }
+
+    try {
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET as string) as {
+            userId: string;
+        };
+        req.userId = decodedToken.userId;
+    } catch {
+        // Ignore invalid tokens for optional auth routes
+    }
+
+    return next();
+};

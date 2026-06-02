@@ -30,6 +30,7 @@ export function useMeQuery(enabled = true) {
         id: query.data.id,
         email: query.data.email,
         name: query.data.name,
+        profileUrl: query.data.profileUrl,
       });
       return;
     }

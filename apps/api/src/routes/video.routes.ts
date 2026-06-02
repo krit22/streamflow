@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authMiddleware } from "../controllers/authmiddleware";
+import { authMiddleware, optionalAuthMiddleware } from "../controllers/authmiddleware";
 import {
     createCommentController,
     deleteCommentController,
@@ -21,7 +21,7 @@ const router = Router();
 router.post("/initialize", authMiddleware, initalizeVideoUploadController)
 router.get("/", getVideosController)
 router.post("/:videoId/finalize", authMiddleware, finalizeVideoUploadController)
-router.post("/:videoId/view", incrementViewCountController)
+router.post("/:videoId/view", optionalAuthMiddleware, incrementViewCountController)
 router.get("/:videoId/like", authMiddleware, getLikeStatusController)
 router.post("/:videoId/like", authMiddleware, likeVideoController)
 router.delete("/:videoId/like", authMiddleware, unlikeVideoController)

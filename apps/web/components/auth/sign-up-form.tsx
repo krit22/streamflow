@@ -17,10 +17,16 @@ export type SignUpFormErrors = {
 export type SignUpFormProps = {
   isActive: boolean;
   errors?: SignUpFormErrors;
+  isSubmitting?: boolean;
   onSubmit?: (event: FormEvent<HTMLFormElement>) => void;
 };
 
-export function SignUpForm({ isActive, errors, onSubmit }: SignUpFormProps) {
+export function SignUpForm({
+  isActive,
+  errors,
+  isSubmitting = false,
+  onSubmit,
+}: SignUpFormProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit?.(event);
@@ -75,7 +81,9 @@ export function SignUpForm({ isActive, errors, onSubmit }: SignUpFormProps) {
           {errors?.password ? <FieldError message={errors.password} /> : null}
         </div>
       </div>
-      <Button type="submit">Create Account</Button>
+      <Button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Creating Account…" : "Create Account"}
+      </Button>
     </form>
   );
 }

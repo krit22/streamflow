@@ -14,12 +14,14 @@ const providerConfig: Record<
 export type SocialAuthButtonProps = {
   provider: SocialProvider;
   className?: string;
+  disabled?: boolean;
   onClick?: () => void;
 };
 
 export function SocialAuthButton({
   provider,
   className,
+  disabled,
   onClick,
 }: SocialAuthButtonProps) {
   const { label, icon } = providerConfig[provider];
@@ -27,6 +29,7 @@ export function SocialAuthButton({
   return (
     <button
       type="button"
+      disabled={disabled}
       onClick={onClick}
       className={cn(
         "flex items-center justify-center gap-3 rounded-lg border border-surface-container py-3 transition-soft hover:bg-surface-container-low",

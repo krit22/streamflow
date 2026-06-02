@@ -15,7 +15,7 @@ export function useLoginMutation() {
     mutationFn: (input: LoginUserInput) => loginUser(input),
     onSuccess: (data) => {
       setUser(data.user);
-      queryClient.setQueryData(queryKeys.auth.me(), data.user);
+      void queryClient.invalidateQueries({ queryKey: queryKeys.auth.me() });
     },
   });
 }

@@ -31,6 +31,7 @@ model User {
   comments      Comment[]
   like          Like[]
   subscriptions Subscription[]
+  viewHistory   ViewHistory[]
 
   @@index([email])
 }
@@ -63,10 +64,24 @@ model Video {
 
   channelId String    @map("channel_id")
   channel   Channel   @relation(fields: [channelId], references: [id], onDelete: Cascade)
-  comments  Comment[]
-  like      Like[]
+  comments     Comment[]
+  like         Like[]
+  viewHistory  ViewHistory[]
 
   @@index([channelId])
+}
+
+model ViewHistory {
+  id       String   @id @default(uuid())
+  viewedAt DateTime @default(now()) @map("viewed_at")
+
+  userId  String @map("user_id")
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  videoId String @map("video_id")
+  video   Video  @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, videoId])
+  @@index([userId, viewedAt(sort: Desc)])
 }
 
 model Comment {

@@ -21,6 +21,37 @@ export type AuthUser = {
   id: string;
   email: string;
   name: string;
+  profileUrl?: string | null;
+};
+
+export type FeedChannel = {
+  id: string;
+  name: string;
+  description: string | null;
+  bannerUrl: string | null;
+  subscriberCount: number;
+  createdAt: string;
+  userId: string;
+};
+
+export type FeedVideo = {
+  id: string;
+  title: string;
+  description: string | null;
+  thumbnailUrl: string | null;
+  videoUrl: string;
+  likeCount: number;
+  viewsCount: number;
+  status: string;
+  type: string;
+  createdAt: string;
+  channelId: string;
+  channel: FeedChannel;
+};
+
+export type VideosPage = {
+  videos: FeedVideo[];
+  nextCursor: string | null;
 };
 
 export type AuthSession = {

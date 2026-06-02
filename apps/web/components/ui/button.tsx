@@ -9,7 +9,7 @@ export function Button({ className, children, type = "button", ...props }: Butto
     <button
       type={type}
       className={cn(
-        "w-full rounded-lg bg-primary py-4 font-label-md text-label-md font-semibold uppercase tracking-widest text-on-primary transition-soft hover:opacity-90",
+        "w-full rounded-lg bg-primary py-4 font-label-md text-label-md font-semibold uppercase tracking-widest text-on-primary transition-soft hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60",
         className,
       )}
       {...props}

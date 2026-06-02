@@ -17,10 +17,16 @@ export type SignInFormErrors = {
 export type SignInFormProps = {
   isActive: boolean;
   errors?: SignInFormErrors;
+  isSubmitting?: boolean;
   onSubmit?: (event: FormEvent<HTMLFormElement>) => void;
 };
 
-export function SignInForm({ isActive, errors, onSubmit }: SignInFormProps) {
+export function SignInForm({
+  isActive,
+  errors,
+  isSubmitting = false,
+  onSubmit,
+}: SignInFormProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit?.(event);
@@ -73,7 +79,9 @@ export function SignInForm({ isActive, errors, onSubmit }: SignInFormProps) {
           {errors?.password ? <FieldError message={errors.password} /> : null}
         </div>
       </div>
-      <Button type="submit">Sign In</Button>
+      <Button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Signing In…" : "Sign In"}
+      </Button>
     </form>
   );
 }
