@@ -19,24 +19,24 @@ export const registerUserController = async (req: Request, res: Response) => {
             password,
             name
         })
-        
+
         if (!result.success) {
             return res.status(400).json({
                 "success": false,
-                "error":{
+                "error": {
                     "code": "VALIDATION_ERROR",
                     "message": result.error.message,
                     "issues": result.error.issues
                 }
             })
         }
-       
+
         const newUser = await createUserService({ email, password, name });
 
         res.json({
             "success": true,
-            "data":{
-                "user":{
+            "data": {
+                "user": {
                     "id": newUser.id,
                     "email": newUser.email,
                     "name": newUser.name
@@ -48,7 +48,7 @@ export const registerUserController = async (req: Request, res: Response) => {
     } catch (error: any) {
         res.status(409).json({
             "success": false,
-            "error":{
+            "error": {
                 "code": "EMAIL_ALREADY_EXISTS",
                 "message": "User with this email already exists"
             }
@@ -69,7 +69,7 @@ export const loginUserController = async (req: Request, res: Response) => {
         if (!result.success) {
             return res.status(400).json({
                 "success": false,
-                "error":{
+                "error": {
                     "code": "VALIDATION_ERROR",
                     "message": result.error.message,
                     "issues": result.error.issues
@@ -82,7 +82,7 @@ export const loginUserController = async (req: Request, res: Response) => {
         if (!user) {
             return res.status(401).json({
                 "success": false,
-                "error":{
+                "error": {
                     "code": "USER NOT FOUND",
                     "message": "Invalid email or password"
                 }
@@ -94,7 +94,7 @@ export const loginUserController = async (req: Request, res: Response) => {
         if (!isPasswordValid) {
             return res.status(401).json({
                 "success": false,
-                "error":{
+                "error": {
                     "code": "INVALID_PASSWORD",
                     "message": "Invalid email or password"
                 }
@@ -116,10 +116,10 @@ export const loginUserController = async (req: Request, res: Response) => {
             },
         });
 
-    } catch (error: any) {  
+    } catch (error: any) {
         res.status(401).json({
             "success": false,
-            "error":{
+            "error": {
                 "code": "INVALID_CREDENTIALS",
                 "message": "Invalid email or password"
             }
@@ -162,7 +162,7 @@ export const getMySubscriptionsController = async (req: Request, res: Response) 
 
         return res.json({
             success: true,
-            data: subscriptions.map((sub) => sub.channel)
+            data: subscriptions.map((sub: any) => sub.channel)
         })
     } catch (e) {
         console.error(e)

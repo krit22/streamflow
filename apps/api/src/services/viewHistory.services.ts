@@ -35,7 +35,7 @@ export const getUserViewHistoryService = async (
     const nextCursor = hasMore ? page[page.length - 1]!.id : null;
 
     return {
-        videos: page.map((entry) => entry.video),
+        videos: page.map((entry: any) => entry.video),
         nextCursor,
     };
 };

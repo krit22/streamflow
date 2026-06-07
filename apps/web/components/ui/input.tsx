@@ -1,27 +1,19 @@
-import { forwardRef, type InputHTMLAttributes } from "react";
+import * as React from "react"
 
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils"
 
-export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  hasError?: boolean;
-};
+function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      type={type}
+      data-slot="input"
+      className={cn(
+        "h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, hasError = false, ...props }, ref) => {
-    return (
-      <input
-        ref={ref}
-        className={cn(
-          "auth-input w-full border-b bg-transparent py-3 font-body-md text-body-md transition-colors placeholder:text-secondary-fixed-dim",
-          hasError
-            ? "auth-input--error border-error focus:border-error"
-            : "border-surface-container focus:border-primary",
-          className,
-        )}
-        {...props}
-      />
-    );
-  },
-);
-
-Input.displayName = "Input";
+export { Input }
