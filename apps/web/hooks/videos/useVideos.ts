@@ -9,6 +9,7 @@ const DEFAULT_LIMIT = 12
 export const videoKeys = {
   all: ["videos"] as const,
   feed: (limit: number) => [...videoKeys.all, "feed", limit] as const,
+  detail: (videoId: string) => [...videoKeys.all, "detail", videoId] as const,
 }
 
 async function fetchVideosPage(limit: number, cursor?: string) {

@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { MoreVertical } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export type VideoCardProps = {
+  id: string
   thumbnailUrl: string
   title: string
   channelName: string
@@ -21,6 +23,7 @@ function getInitial(name: string) {
 }
 
 export function VideoCard({
+  id,
   thumbnailUrl,
   title,
   channelName,
@@ -31,9 +34,11 @@ export function VideoCard({
   className,
   onMenuClick,
 }: VideoCardProps) {
+  const videoHref = `/video/${id}`
+
   return (
     <article className={cn("group flex flex-col gap-3", className)}>
-      <div className="relative aspect-video overflow-hidden rounded-xl bg-muted">
+      <Link href={videoHref} className="relative aspect-video overflow-hidden rounded-xl bg-muted">
         <Image
           src={thumbnailUrl}
           alt={title}
@@ -47,7 +52,7 @@ export function VideoCard({
             {duration}
           </span>
         ) : null}
-      </div>
+      </Link>
 
       <div className="flex gap-3">
         <Avatar className="size-9">
@@ -59,9 +64,11 @@ export function VideoCard({
 
         <div className="min-w-0 flex-1">
           <div className="flex items-start gap-1">
-            <h3 className="line-clamp-2 flex-1 text-sm font-semibold leading-snug">
-              {title}
-            </h3>
+            <Link href={videoHref} className="flex-1">
+              <h3 className="line-clamp-2 text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
+                {title}
+              </h3>
+            </Link>
             <Button
               type="button"
               variant="ghost"

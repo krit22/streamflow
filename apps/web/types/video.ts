@@ -32,3 +32,8 @@ export type GetVideosResponse = {
   success: true
   data: VideosPage
 }
+
+export type GetVideoResponse = {
+  success: true
+  data: Video
+}

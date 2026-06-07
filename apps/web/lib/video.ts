@@ -42,6 +42,7 @@ export function formatTimeAgo(date: string) {
 
 export function mapVideoToCardProps(video: Video): VideoCardProps {
   return {
+    id: video.id,
     thumbnailUrl: video.thumbnailUrl ?? PLACEHOLDER_THUMBNAIL,
     title: video.title,
     channelName: video.channel.name,
