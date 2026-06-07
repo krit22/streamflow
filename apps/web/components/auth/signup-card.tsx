@@ -19,14 +19,17 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { useRegister } from "@/hooks/auth/useRegister"
+import { getApiErrorMessage } from "@/lib/apiClient"
 
 export function SignupCard() {
   const router = useRouter()
+  const registerUser = useRegister()
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     setError,
   } = useForm<RegisterUserInput>({
     resolver: zodResolver(RegisterUserSchema),
@@ -37,29 +40,13 @@ export function SignupCard() {
     },
   })
 
-
-  //replace with tanstack later
-  const onSubmit = async (data: RegisterUserInput) => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/v1/users/register`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(data),
-      }
-    )
-
-    const result = await response.json()
-
-    if (!response.ok) {
-      const message =
-        result.error?.message ?? "Something went wrong. Please try again."
-      setError("root", { message })
-      return
-    }
-
-    router.push("/login")
+  const onSubmit = (data: RegisterUserInput) => {
+    registerUser.mutate(data, {
+      onSuccess: () => router.push("/login"),
+      onError: (error) => {
+        setError("root", { message: getApiErrorMessage(error) })
+      },
+    })
   }
 
   return (
@@ -124,8 +111,8 @@ export function SignupCard() {
           </div>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Creating account..." : "Sign up"}
+          <Button type="submit" className="w-full" disabled={registerUser.isPending}>
+            {registerUser.isPending ? "Creating account..." : "Sign up"}
           </Button>
         </CardFooter>
       </form>

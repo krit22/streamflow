@@ -19,14 +19,17 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { useLogin } from "@/hooks/auth/useLogin"
+import { getApiErrorMessage } from "@/lib/apiClient"
 
 export function SigninCard() {
     const router = useRouter()
+    const login = useLogin()
 
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: { errors },
         setError,
     } = useForm<LoginUserInput>({
         resolver: zodResolver(LoginUserSchema),
@@ -36,29 +39,13 @@ export function SigninCard() {
         },
     })
 
-
-    //add tanstack query here
-    const onSubmit = async (data: LoginUserInput) => {
-        const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/v1/users/login`,
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify(data),
-            }
-        )
-
-        const result = await response.json()
-
-        if (!response.ok) {
-            const message =
-                result.error?.message ?? "Something went wrong. Please try again."
-            setError("root", { message })
-            return
-        }
-
-        router.push("/feed")
+    const onSubmit = (data: LoginUserInput) => {
+        login.mutate(data, {
+            onSuccess: () => router.push("/feed"),
+            onError: (error) => {
+                setError("root", { message: getApiErrorMessage(error) })
+            },
+        })
     }
 
     return (
@@ -110,8 +97,8 @@ export function SigninCard() {
                     </div>
                 </CardContent>
                 <CardFooter className="flex-col gap-2">
-                    <Button type="submit" className="w-full" disabled={isSubmitting}>
-                        {isSubmitting ? "Signing in..." : "Login"}
+                    <Button type="submit" className="w-full" disabled={login.isPending}>
+                        {login.isPending ? "Signing in..." : "Login"}
                     </Button>
                 </CardFooter>
             </form>
