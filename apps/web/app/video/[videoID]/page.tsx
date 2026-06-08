@@ -1,4 +1,4 @@
-import VideoPlaterTopbar from "@/components/ui/videoPlayerTopbar";
+import VideoPlayerTopbar from "@/components/ui/videoPlayerTopbar";
 import VideosTopbar from "@/components/ui/videosTopbar";
 import { VideoDetailContent } from "@/components/video/VideoDetailContent";
 
@@ -6,7 +6,7 @@ export default async function VideoPage({ params }: { params: Promise<{ videoID:
   const { videoID } = await params;
 
   return <>
-    <VideoPlaterTopbar />
+    <VideoPlayerTopbar />
     <VideoDetailContent videoID={videoID} />
   </>;
 }

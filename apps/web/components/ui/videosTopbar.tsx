@@ -2,9 +2,17 @@
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
+import { useLogout } from "@/hooks/auth/useLogout"
 import { cn } from "@/lib/utils"
-import { Bell, Menu, Mic, Plus, Search } from "lucide-react"
+import { Bell, LogOut, Menu, Mic, Plus, Search } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 type VideosTopbarProps = {
@@ -25,6 +33,7 @@ export default function VideosTopbar({
   className,
 }: VideosTopbarProps) {
   const router = useRouter()
+  const { mutate: logout } = useLogout()
 
   return (
     <header
@@ -98,9 +107,19 @@ export default function VideosTopbar({
         >
           <Bell />
         </Button>
-        <Avatar className="cursor-pointer">
-          <AvatarFallback>{getInitial(userName)}</AvatarFallback>
-        </Avatar>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Avatar className="cursor-pointer">
+              <AvatarFallback>{getInitial(userName)}</AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => logout()}>
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Log Out</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   )

@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import QueryProvider from "@/components/providers/QueryProvider";
+import { SessionHydrator } from "@/components/providers/SessionHydrator";
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
@@ -37,9 +38,11 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark">
-            {children}
-          </ThemeProvider>
+          <SessionHydrator>
+            <ThemeProvider attribute="class" defaultTheme="dark">
+              {children}
+            </ThemeProvider>
+          </SessionHydrator>
         </QueryProvider>
 
       </body>
