@@ -100,6 +100,14 @@ export function SigninCard() {
                     <Button type="submit" className="w-full" disabled={login.isPending}>
                         {login.isPending ? "Signing in..." : "Login"}
                     </Button>
+                    <Button
+                        type="button"
+                        variant="ghost"
+                        className="w-full"
+                        onClick={() => router.push("/feed")}
+                    >
+                        Continue without logging in
+                    </Button>
                 </CardFooter>
             </form>
         </Card>

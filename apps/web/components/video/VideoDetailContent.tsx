@@ -5,17 +5,46 @@ import { CustomVideoPlayer } from "@/components/video/customVideoPlayer";
 import { useVideoDetails } from "@/hooks/videos/useVideoDetails";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, Share2, ThumbsUp, MoreVertical } from "lucide-react";
+import { MessageSquare, Share2, ThumbsUp, MoreVertical, Loader2 } from "lucide-react";
+import { useAuth } from "@/hooks/auth/useAuth";
+import { useRouter } from "next/navigation";
+import { useLike } from "@/hooks/videos/useLike";
+import { useSubscription } from "@/hooks/channel/useSubscription";
+import { useViewTracker } from "@/hooks/videos/useViewTracker";
+import { cn } from "@/lib/utils";
 
 interface VideoDetailContentProps {
   videoID: string;
 }
 
 export function VideoDetailContent({ videoID }: VideoDetailContentProps) {
+  const router = useRouter();
+  const { isLoggedIn } = useAuth();
   const { data: video, isLoading } = useVideoDetails(videoID);
+  
+  // Custom Hooks
+  useViewTracker(videoID);
+  const { isLiked, toggleLike, isLiking } = useLike(videoID);
+  const { isSubscribed, toggleSubscription, isSubscribing } = useSubscription(video?.channelId || "", videoID);
 
   if (isLoading) return <div className="p-8">Loading...</div>;
   if (!video) return <div className="p-8 text-destructive">Video not found</div>;
+
+  const handleSubscribeClick = () => {
+    if (!isLoggedIn) {
+      router.push("/login");
+      return;
+    }
+    toggleSubscription();
+  };
+
+  const handleLikeClick = () => {
+    if (!isLoggedIn) {
+      router.push("/login");
+      return;
+    }
+    toggleLike();
+  };
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 p-4 lg:p-6 max-w-[1800px] mx-auto">
@@ -38,15 +67,40 @@ export function VideoDetailContent({ videoID }: VideoDetailContentProps) {
                   {video.channel.subscriberCount.toLocaleString()} subscribers
                 </p>
               </div>
-              <Button variant="default" className="rounded-full px-6 ml-2">
-                Subscribe
+              <Button 
+                variant={isSubscribed ? "secondary" : "default"} 
+                className={cn(
+                  "rounded-full px-6 ml-2",
+                  isSubscribed && "bg-muted text-muted-foreground hover:bg-muted/80",
+                  !isLoggedIn && "bg-muted text-muted-foreground hover:bg-muted"
+                )}
+                onClick={handleSubscribeClick}
+                disabled={isSubscribing}
+              >
+                {isSubscribing ? (
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                ) : null}
+                {isSubscribed ? "Subscribed" : "Subscribe"}
               </Button>
             </div>
 
             <div className="flex items-center gap-2">
               <div className="flex items-center bg-muted rounded-full">
-                <Button variant="ghost" className="rounded-l-full gap-2 px-4 hover:bg-muted-foreground/10">
-                  <ThumbsUp className="h-4 w-4" />
+                <Button 
+                  variant="ghost" 
+                  className={cn(
+                    "rounded-l-full gap-2 px-4 hover:bg-muted-foreground/10",
+                    isLiked && "text-primary",
+                    !isLoggedIn && "text-muted-foreground"
+                  )}
+                  onClick={handleLikeClick}
+                  disabled={isLiking}
+                >
+                  {isLiking ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <ThumbsUp className={cn("h-4 w-4", isLiked && "fill-current")} />
+                  )}
                   <span className="text-sm font-medium">{video.likeCount}</span>
                 </Button>
                 <div className="w-[1px] h-6 bg-border" />

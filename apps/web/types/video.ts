@@ -6,6 +6,7 @@ export type Channel = {
   subscriberCount: number
   createdAt: string
   userId: string
+  videos?: Video[]
 }
 
 export type Video = {
@@ -36,4 +37,9 @@ export type GetVideosResponse = {
 export type GetVideoResponse = {
   success: true
   data: Video
+}
+
+export type GetChannelProfileResponse = {
+  success: true
+  data: Channel
 }

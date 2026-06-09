@@ -20,10 +20,19 @@ apiClient.interceptors.response.use(
     }
 );
 
+export type Channel = {
+    id: string;
+    name: string;
+    description: string | null;
+    subscriberCount: number;
+    createdAt: string;
+};
+
 export type AuthUser = {
     id: string;
     email: string;
     name: string;
+    channels?: Channel[];
 };
 
 type ApiErrorResponse = {

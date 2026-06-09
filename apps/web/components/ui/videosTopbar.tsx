@@ -14,6 +14,7 @@ import { useLogout } from "@/hooks/auth/useLogout"
 import { cn } from "@/lib/utils"
 import { Bell, LogOut, Menu, Mic, Plus, Search } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { useUIStore } from "@/store/useUIStore"
 
 type VideosTopbarProps = {
   onMenuClick?: () => void
@@ -34,6 +35,7 @@ export default function VideosTopbar({
 }: VideosTopbarProps) {
   const router = useRouter()
   const { mutate: logout } = useLogout()
+  const openUploadModal = useUIStore((state) => state.openUploadModal)
 
   return (
     <header
@@ -95,6 +97,7 @@ export default function VideosTopbar({
           type="button"
           variant="secondary"
           className="hidden rounded-full sm:inline-flex"
+          onClick={openUploadModal}
         >
           <Plus data-icon="inline-start" />
           Create

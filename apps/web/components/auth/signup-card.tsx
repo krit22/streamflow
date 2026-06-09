@@ -42,7 +42,7 @@ export function SignupCard() {
 
   const onSubmit = (data: RegisterUserInput) => {
     registerUser.mutate(data, {
-      onSuccess: () => router.push("/login"),
+      onSuccess: () => router.push("/feed"),
       onError: (error) => {
         setError("root", { message: getApiErrorMessage(error) })
       },
@@ -113,6 +113,14 @@ export function SignupCard() {
         <CardFooter className="flex-col gap-2">
           <Button type="submit" className="w-full" disabled={registerUser.isPending}>
             {registerUser.isPending ? "Creating account..." : "Sign up"}
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            className="w-full"
+            onClick={() => router.push("/feed")}
+          >
+            Continue without signing up
           </Button>
         </CardFooter>
       </form>
