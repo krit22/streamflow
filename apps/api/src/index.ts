@@ -8,13 +8,13 @@ import videoRoutes from "./routes/video.routes";
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 const webOrigin = process.env.WEB_ORIGIN ?? "http://localhost:3000";
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      callback(null, true);
-    },
+    origin: webOrigin,
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   }),
