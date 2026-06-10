@@ -9,7 +9,7 @@ export function getAuthCookieOptions(): CookieOptions {
   const options: CookieOptions = {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? "none" : "lax",
+    sameSite: "lax",
     maxAge: 60 * 60 * 1000, // 1h, matches JWT expiresIn
     path: "/",
   };
