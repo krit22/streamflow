@@ -10,7 +10,7 @@ import {
 import { getMyViewHistoryController } from "../controllers/viewHistory.controller";
 import { getLikedVideosController } from "../controllers/like.controllers";
 
-const router = Router();
+const router: Router = Router();
 
 router.post("/register", registerUserController);
 router.post("/login", loginUserController);

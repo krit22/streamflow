@@ -8,8 +8,7 @@
       "node"
     ],
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "declaration": false,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "moduleResolution": "bundler",

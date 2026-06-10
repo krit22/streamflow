@@ -16,7 +16,7 @@ import {
     updateVideoController,
 } from "../controllers/video.controllers";
 
-const router = Router();
+const router: Router = Router();
 
 router.post("/initialize", authMiddleware, initalizeVideoUploadController)
 router.get("/", getVideosController)

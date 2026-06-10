@@ -3,7 +3,7 @@ import { createChannelController, getChannelProfileController } from "../control
 import { authMiddleware } from "../controllers/authmiddleware"
 import { getSubscriptionStatusController, subscribeController, unsubscribeController } from "../controllers/subscription.controllers"
 
-const router = Router()
+const router: Router = Router()
 
 router.post("/createchannel", authMiddleware, createChannelController)
 router.get("/getChannelProfile/:id", getChannelProfileController)
