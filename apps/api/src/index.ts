@@ -12,7 +12,9 @@ const webOrigin = process.env.WEB_ORIGIN ?? "http://localhost:3000";
 
 app.use(
   cors({
-    origin: webOrigin,
+    origin: (origin, callback) => {
+      callback(null, true);
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   }),
