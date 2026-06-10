@@ -7,5 +7,18 @@
         "mcp"
       ]
     }
+  },
+  "skills": {
+    "disabled": [
+      "skill-creator",
+      "gsap-utils",
+      "gsap-core",
+      "gsap-frameworks",
+      "gsap-performance",
+      "gsap-timeline",
+      "gsap-react",
+      "gsap-plugins",
+      "gsap-scrolltrigger"
+    ]
   }
 }

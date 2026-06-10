@@ -1,6 +1,6 @@
 import type { Request, Response } from "express"
 import { getVideoById } from "../services/video.services"
-import { likeVideoService, unlikeVideoService, hasUserLikedVideoService } from "../services/like.services"
+import { likeVideoService, unlikeVideoService, hasUserLikedVideoService, getLikedVideosService } from "../services/like.services"
 
 export const likeVideoController = async (req: Request, res: Response) => {
     const videoId = req.params.videoId as string
@@ -96,6 +96,25 @@ export const getLikeStatusController = async (req: Request, res: Response) => {
         return res.json({
             success: true,
             data: { isLiked }
+        })
+    } catch (e) {
+        console.error(e)
+        return res.status(500).json({
+            success: false,
+            error: { code: "INTERNAL_ERROR", message: (e as Error).message }
+        })
+    }
+}
+
+export const getLikedVideosController = async (req: Request, res: Response) => {
+    const userId = req.userId as string
+
+    try {
+        const videos = await getLikedVideosService(userId)
+
+        return res.json({
+            success: true,
+            data: videos
         })
     } catch (e) {
         console.error(e)

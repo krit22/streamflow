@@ -3,20 +3,21 @@ import type { Request, Response } from "express";
 import { getChannelService } from "../services/channel.services";
 import { createClient } from '@supabase/supabase-js'
 import { createVideoService, getVideoById, getVideosService, updateVideoStatus, updateVideoService, deleteVideoService, incrementViewCountService } from "../services/video.services";
-import { recordViewHistoryService } from "../services/viewHistory.services";
+import { recordViewHistoryService, hasUserViewedVideoService } from "../services/viewHistory.services";
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!)
 
 export const initalizeVideoUploadController = async (req: Request, res: Response) => {
 
-    const { channelId, title, description, contentType } = req.body;
+    const { channelId, title, description, contentType, thumbnailContentType } = req.body;
 
     //1. validate the request body using zod
     const result = initalizeVideoUploadSchema.safeParse({
         channelId,
         title,
         description,
-        contentType
+        contentType,
+        thumbnailContentType
     })
 
     if (!result.success) {
@@ -31,54 +32,69 @@ export const initalizeVideoUploadController = async (req: Request, res: Response
     }
 
     try {
-        //2. check if the channel exists and the user owns it
+        // 2. Check if the channel exists and the user owns it
         const channelDetails = await getChannelService(channelId)
 
         if (!channelDetails || channelDetails.userId !== req.userId) {
             return res.status(403).json({
                 success: false,
-                "error": {
+                error: {
                     code: "PERMISSION_DENIED",
-                    "message": "You do not have permission to upload videos to this channel.",
+                    message: "You do not have permission to upload videos to this channel.",
                 }
             })
         }
-        //4. check if the fle format is supported (only mp4)
-        const supportedFileTypes = ["video/mp4"];
 
-        if (!supportedFileTypes.includes(contentType)) {
+        // 3. Validate supported file formats
+        const supportedVideoTypes = ["video/mp4"];
+        if (!supportedVideoTypes.includes(contentType)) {
             return res.status(400).json({
-                "success": false,
-                "error": {
-                    "code": "VALIDATION_ERROR",
-                    "message": "Invalid content type. Only video/mp4, video/quicktime, and video/webm are supported."
+                success: false,
+                error: {
+                    code: "VALIDATION_ERROR",
+                    message: "Invalid video content type. Only video/mp4 is supported."
                 }
             })
         }
 
-        //5. handle s3 storage provider failure with supabase
+        // 4. Generate unique filenames for storage
+        const videoFilename = `${Math.floor(1000000000 + Math.random() * 9000000000)}.mp4`;
+        const thumbFilename = `${Math.floor(1000000000 + Math.random() * 9000000000)}.png`;
 
-        const filename = Math.floor(1000000000 + Math.random() * 9000000000) + ".mp4";
+        // 5. Generate signed upload URLs from Supabase in parallel
+        const [videoUploadData, thumbUploadData] = await Promise.all([
+            supabase.storage.from('videos').createSignedUploadUrl(videoFilename),
+            supabase.storage.from('videos').createSignedUploadUrl(thumbFilename)
+        ]);
 
-        const { data, error } = await supabase
-            .storage
-            .from('videos')
-            .createSignedUploadUrl(filename)
+        if (videoUploadData.error) throw videoUploadData.error;
+        if (thumbUploadData.error) throw thumbUploadData.error;
 
-        const uploadUrl = process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public/videos/" + filename;
+        // 6. Construct public URLs for database storage
+        const storageBaseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/videos`;
+        const videoUrl = `${storageBaseUrl}/${videoFilename}`;
+        const thumbnailUrl = `${storageBaseUrl}/${thumbFilename}`;
 
-        //inseert an entry in video table
-        const video = await createVideoService(channelDetails.id, title, description, uploadUrl)
+        // 7. Create pending video record in database
+        const video = await createVideoService(
+            channelDetails.id, 
+            title, 
+            description, 
+            videoUrl, 
+            thumbnailUrl
+        );
 
-        //7. return the presigned url and the video id to the client
-        res.json({
-            "success": true,
-            "data": {
-                "videoId": video.id,
-                "uploadUrl": data?.signedUrl,
-                "videoUrl": uploadUrl
+        // 8. Return signed URLs and metadata to client
+        return res.json({
+            success: true,
+            data: {
+                videoId: video.id,
+                videoUploadUrl: videoUploadData.data?.signedUrl,
+                videoUrl,
+                thumbnailUploadUrl: thumbUploadData.data?.signedUrl,
+                thumbnailUrl
             }
-        })
+        });
 
     } catch (e) {
         console.error(e)
@@ -318,15 +334,42 @@ export const incrementViewCountController = async (req: Request, res: Response) 
             })
         }
 
-        await incrementViewCountService(videoId)
+        let shouldIncrement = false;
 
         if (req.userId) {
-            await recordViewHistoryService(req.userId, videoId)
+            // Authenticated user tracking
+            const alreadyViewed = await hasUserViewedVideoService(req.userId, videoId);
+            if (!alreadyViewed) {
+                shouldIncrement = true;
+            }
+            await recordViewHistoryService(req.userId, videoId);
+        } else {
+            // Guest session tracking via cookie
+            let viewedVideos: string[] = [];
+            try {
+                viewedVideos = req.cookies.viewed_videos ? JSON.parse(req.cookies.viewed_videos) : [];
+            } catch (e) {
+                viewedVideos = [];
+            }
+            
+            if (!viewedVideos.includes(videoId)) {
+                shouldIncrement = true;
+                const updatedViewedVideos = [...viewedVideos, videoId];
+                res.cookie("viewed_videos", JSON.stringify(updatedViewedVideos), {
+                    httpOnly: true,
+                    maxAge: 1000 * 60 * 60 * 24, // 24 hours
+                    sameSite: "lax",
+                });
+            }
+        }
+
+        if (shouldIncrement) {
+            await incrementViewCountService(videoId);
         }
 
         return res.json({
             success: true,
-            message: "View count updated"
+            message: "View processed"
         })
     } catch (e) {
         console.error(e)

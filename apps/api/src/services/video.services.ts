@@ -1,12 +1,13 @@
 import prisma from "../db";
 
-export const createVideoService = async (channelId: string, title: string, description: string, uploadUrl: string) => {
+export const createVideoService = async (channelId: string, title: string, description: string, uploadUrl: string, thumbnailUrl: string) => {
     const video = await prisma.video.create({
         data: {
             channelId,
             title,
             description,
             videoUrl: uploadUrl,
+            thumbnailUrl,
             status: "PENDING",
         }
     })
@@ -59,17 +60,19 @@ export const getVideosService = async (limit: number, cursor?: string) => {
 
 export const updateVideoService = async (
     videoId: string,
-    data: { title?: string | undefined; description?: string | undefined; type?: "PUBLIC" | "PRIVATE" | "LINK_ONLY" | undefined }
+    data: { title?: string | undefined; description?: string | undefined; type?: "PUBLIC" | "PRIVATE" | "LINK_ONLY" | undefined; thumbnailUrl?: string | undefined }
 ) => {
     // Build the update object only with defined values to satisfy Prisma's exactOptionalPropertyTypes
     const prismaData: {
         title?: string
         description?: string
         type?: "PUBLIC" | "PRIVATE" | "LINK_ONLY"
+        thumbnailUrl?: string
     } = {}
     if (data.title !== undefined) prismaData.title = data.title
     if (data.description !== undefined) prismaData.description = data.description
     if (data.type !== undefined) prismaData.type = data.type
+    if (data.thumbnailUrl !== undefined) prismaData.thumbnailUrl = data.thumbnailUrl
 
     return prisma.video.update({
         where: { id: videoId },

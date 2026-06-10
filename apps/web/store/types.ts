@@ -3,6 +3,6 @@
  */
 export type StoreSetter<T> = (
   partial: T | Partial<T> | ((state: T) => T | Partial<T>),
-  replace?: boolean | undefined,
-  actionName?: string | { type: string; [key: string]: unknown }
+  replace?: any,
+  actionName?: any
 ) => void;

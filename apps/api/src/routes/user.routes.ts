@@ -8,6 +8,7 @@ import {
     registerUserController,
 } from "../controllers/user.controller";
 import { getMyViewHistoryController } from "../controllers/viewHistory.controller";
+import { getLikedVideosController } from "../controllers/like.controllers";
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.post("/login", loginUserController);
 router.post("/logout", logoutUserController);
 router.get("/me/subscriptions", authMiddleware, getMySubscriptionsController);
 router.get("/me/history", authMiddleware, getMyViewHistoryController);
+router.get("/me/likes", authMiddleware, getLikedVideosController);
 router.get("/me", authMiddleware, getMeController);
 
 export default router;

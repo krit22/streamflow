@@ -10,6 +10,15 @@ export const recordViewHistoryService = async (userId: string, videoId: string) 
     });
 };
 
+export const hasUserViewedVideoService = async (userId: string, videoId: string) => {
+    const entry = await prisma.viewHistory.findUnique({
+        where: {
+            userId_videoId: { userId, videoId },
+        },
+    });
+    return !!entry;
+};
+
 export const getUserViewHistoryService = async (
     userId: string,
     limit: number,

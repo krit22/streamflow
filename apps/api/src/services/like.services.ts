@@ -36,3 +36,20 @@ export const hasUserLikedVideoService = async (userId: string, videoId: string) 
     })
     return !!like
 }
+
+export const getLikedVideosService = async (userId: string) => {
+    const likes = await prisma.like.findMany({
+        where: { userId },
+        include: {
+            video: {
+                include: {
+                    channel: true
+                }
+            }
+        },
+        orderBy: {
+            likedAt: "desc"
+        }
+    })
+    return likes.map(like => like.video)
+}

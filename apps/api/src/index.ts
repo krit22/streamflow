@@ -30,6 +30,8 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/channels", channelRoutes);
 app.use("/api/v1/videos", videoRoutes);
 
-app.listen(8000, () => {
-  console.log("Server is running on port 8000");
+const port = process.env.PORT || 8000;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

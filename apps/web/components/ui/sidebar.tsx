@@ -8,9 +8,9 @@ import { Clock, Home, Library, PlaySquare, ThumbsUp } from "lucide-react"
 const navItems = [
   { label: "Home", href: "/feed", icon: Home },
   { label: "Subscriptions", href: "/subscriptions", icon: PlaySquare },
-  { label: "History", href: "#", icon: Clock },
+  { label: "History", href: "/history", icon: Clock },
   { label: "Your videos", href: "#", icon: Library },
-  { label: "Liked videos", href: "#", icon: ThumbsUp },
+  { label: "Liked videos", href: "/liked-videos", icon: ThumbsUp },
 ]
 
 type AppSidebarProps = {
