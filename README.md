@@ -131,14 +131,6 @@ streamflow/
 
 ---
 
-## 🗺 Roadmap
-
-- [ ] **Creator Dashboard**: Detailed analytics and video management for uploaders.
-- [ ] **Global Search**: Full-text search implementation for videos and channels.
-- [ ] **Watch History**: Cross-device playback history tracking.
-- [ ] **Transcoding Pipeline**: Automated video transcoding for adaptive bitrate streaming.
-
----
 
 ## 📄 License
 
