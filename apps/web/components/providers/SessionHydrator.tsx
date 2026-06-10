@@ -10,14 +10,19 @@ export function SessionHydrator({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const hydrate = async () => {
+      console.log("[SessionHydrator] Starting hydration...");
       try {
         const response = await apiClient.get("/users/me");
+        console.log("[SessionHydrator] Response received:", response.data);
         if (response.data.success) {
+          console.log("[SessionHydrator] User found, setting state.");
           setUser(response.data.data);
         } else {
+          console.warn("[SessionHydrator] Success false, clearing user.");
           clearUser();
         }
-      } catch {
+      } catch (error) {
+        console.error("[SessionHydrator] Hydration failed:", error);
         clearUser();
       }
     };

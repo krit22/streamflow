@@ -13,6 +13,11 @@ declare global {
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies?.[AUTH_COOKIE_NAME];
 
+    console.log(`[AuthMiddleware] Checking cookie: ${AUTH_COOKIE_NAME}, found: ${token ? "YES" : "NO"}`);
+    if (token) {
+        console.log(`[AuthMiddleware] Token (first 10 chars): ${token.substring(0, 10)}...`);
+    }
+
     if (!token) {
         return res.status(401).json({
             success: false,

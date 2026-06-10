@@ -103,7 +103,9 @@ export const loginUserController = async (req: Request, res: Response) => {
 
         const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET as string, { expiresIn: "1h" });
 
-        res.cookie(AUTH_COOKIE_NAME, token, getAuthCookieOptions());
+        const cookieOptions = getAuthCookieOptions();
+        console.log(`[Login] Setting cookie: ${AUTH_COOKIE_NAME}, Options:`, JSON.stringify(cookieOptions));
+        res.cookie(AUTH_COOKIE_NAME, token, cookieOptions);
 
         return res.json({
             success: true,
@@ -134,15 +136,18 @@ export const logoutUserController = (_req: Request, res: Response) => {
 
 export const getMeController = async (req: Request, res: Response) => {
     try {
+        console.log(`[getMe] Request userId: ${req.userId}`);
         const user = await getUserByIdService(req.userId as string)
 
         if (!user) {
+            console.log(`[getMe] User not found for id: ${req.userId}`);
             return res.status(404).json({
                 success: false,
                 error: { code: "NOT_FOUND", message: "User not found" }
             })
         }
 
+        console.log(`[getMe] User found: ${user.email}`);
         return res.json({
             success: true,
             data: user

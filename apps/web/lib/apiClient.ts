@@ -9,12 +9,32 @@ export const apiClient = axios.create({
     },
 });
 
-// Response interceptor to handle 401 Unauthorized
+// Request interceptor for logging
+apiClient.interceptors.request.use((config) => {
+    console.log(`[API Request] ${config.method?.toUpperCase()} ${config.url}`, {
+        withCredentials: config.withCredentials
+    });
+    return config;
+});
+
+// Response interceptor to handle 401 Unauthorized and logging
 apiClient.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        console.log(`[API Response] ${response.status} ${response.config.url}`, {
+            hasData: !!response.data,
+            setCookie: response.headers["set-cookie"]
+        });
+        return response;
+    },
     (error) => {
-        if (isAxiosError(error) && error.response?.status === 401) {
-            useAuthStore.getState().clearUser();
+        if (isAxiosError(error)) {
+            console.error(`[API Error] ${error.response?.status} ${error.config?.url}`, {
+                message: error.message,
+                data: error.response?.data
+            });
+            if (error.response?.status === 401) {
+                useAuthStore.getState().clearUser();
+            }
         }
         return Promise.reject(error);
     }
