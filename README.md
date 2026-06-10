@@ -7,6 +7,8 @@
 
 **Streamflow** is a modern, full-stack video streaming platform architecture built with a focus on scalability, type safety, and developer experience. Leveraging a monorepo structure, it demonstrates how to build and manage a complex ecosystem of applications and shared libraries.
 
+🚀 **Live Demo**: [https://streamflow-ahic.onrender.com/register](https://streamflow-ahic.onrender.com/register)
+
 ---
 
 ## 🚀 Key Features
@@ -91,11 +93,31 @@ streamflow/
     pnpm install
     ```
 
-3.  **Environment Setup**:
-    - Navigate to `apps/api/` and create a `.env` file based on `.env.example`.
-    - Navigate to `apps/web/` and create a `.env.local` file.
+### Environment Setup
 
-4.  **Database Migration**:
+1.  **API Configuration** (`apps/api/.env`):
+    ```env
+    # Database
+    DATABASE_URL="postgresql://user:password@localhost:5432/streamflow"
+
+    # Auth
+    JWT_SECRET="your-super-secret-key"
+    WEB_ORIGIN="http://localhost:3000"
+    ```
+
+2.  **Web Configuration** (`apps/web/.env.local`):
+    ```env
+    # API URL for Client-side requests
+    NEXT_PUBLIC_API_URL="http://localhost:3000/api/v1"
+
+    # Backend API URL for Server-side rewrites
+    BACKEND_API_URL="http://localhost:8000"
+
+    # Supabase
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="your-supabase-key"
+    ```
+
+### Database Migration
     ```bash
     pnpm --filter=api prisma migrate dev
     ```
