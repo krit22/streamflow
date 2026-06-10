@@ -1,102 +1,127 @@
 # Streamflow
 
-Open-source video platform built as a TypeScript monorepo.
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?style=for-the-badge&logo=turborepo&logoColor=white)](https://turbo.build/)
+[![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)](https://www.prisma.io/)
 
-## Tech Stack
+**Streamflow** is a modern, full-stack video streaming platform architecture built with a focus on scalability, type safety, and developer experience. Leveraging a monorepo structure, it demonstrates how to build and manage a complex ecosystem of applications and shared libraries.
 
-- **Language (frontend + backend):** TypeScript
-- **Frontend:** Next.js (App Router), React, Tailwind CSS, TanStack Query, Zustand
-- **Backend:** Node.js, Express, Prisma, PostgreSQL, JWT (cookie auth)
-- **Storage:** Supabase Storage (video upload flow)
-- **Monorepo tooling:** pnpm workspaces + Turborepo
-- **Validation:** shared Zod schemas via `@streamflow/validation`
+---
 
-## Basic Architecture
+## 🚀 Key Features
 
-- `apps/web` (frontend) talks to `apps/api` over HTTP.
-- API base path is `http://localhost:8000/api/v1`.
-- Auth uses an HttpOnly cookie (`access_token` by default).
-- Shared packages (`packages/*`) keep UI primitives, lint/TS configs, and validation schemas centralized.
+- **Full-Stack Monorepo**: Managed with **Turborepo** and **pnpm workspaces** for optimized build pipelines and seamless code sharing.
+- **End-to-End Type Safety**: Shared **Zod** schemas between the Express API and Next.js frontend ensure 100% data integrity.
+- **Video Infrastructure**: Integrated with **Supabase Storage** for resilient video hosting and thumbnail management.
+- **Robust Authentication**: Secure JWT-based authentication using **HttpOnly cookies**, mitigating common security vulnerabilities like XSS.
+- **Dynamic Content Discovery**: A high-performance feed featuring **cursor-based pagination** for smooth, infinite scrolling.
+- **Engagement Engine**: Fully functional subscription system, like/dislike mechanics, and an interactive comment system.
+- **Modern UI/UX**: Built with **React 19**, **Tailwind CSS 4**, and **Shadcn/UI**, featuring responsive layouts and optimized client-side state management via **Zustand** and **TanStack Query**.
 
-## Project Structure
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- **Framework**: Next.js 16 (App Router)
+- **Library**: React 19
+- **Styling**: Tailwind CSS 4 + Shadcn/UI
+- **State Management**: Zustand (Global) + TanStack Query (Server State)
+- **Forms**: React Hook Form + Zod
+
+### Backend
+- **Runtime**: Node.js (ES Modules)
+- **Framework**: Express.js
+- **ORM**: Prisma
+- **Database**: PostgreSQL
+- **Auth**: JSON Web Tokens (JWT) + Cookie-parser
+
+### Shared & Infrastructure
+- **Monorepo Tooling**: Turborepo
+- **Package Manager**: pnpm
+- **Validation**: Zod
+- **Cloud Services**: Supabase (Storage & Auth integration)
+
+---
+
+## 🏗 Architecture Overview
+
+The project is structured as a monorepo to promote modularity and reusability:
 
 ```text
 streamflow/
-├─ apps/
-│  ├─ web/                  # Next.js frontend
-│  └─ api/                  # Express + Prisma backend
-├─ packages/
-│  ├─ ui/                   # Shared React UI package
-│  ├─ validation/           # Shared Zod schemas
-│  ├─ eslint-config/        # Shared ESLint config
-│  └─ typescript-config/    # Shared TS config
-├─ docs/                    # Project docs
-├─ turbo.json               # Turborepo pipeline
-└─ pnpm-workspace.yaml      # Workspace definition
+├── apps/
+│   ├── web/                # Next.js frontend application
+│   └── api/                # Express.js RESTful API
+├── packages/
+│   ├── validation/         # Shared Zod schemas for request/response validation
+│   ├── ui/                 # Shared React component library
+│   ├── typescript-config/  # Centrally managed TS configurations
+│   └── eslint-config/      # Shared linting rules
+└── turbo.json              # Turborepo task orchestration
 ```
 
-## Prerequisites
+### Technical Highlights
 
-- Node.js `>=18`
-- pnpm `9.x`
-- PostgreSQL database
-- Supabase project (for upload/storage)
+1.  **Shared Validation Logic**: By housing Zod schemas in `@streamflow/validation`, both the frontend (forms) and backend (request bodies) use the exact same source of truth for data validation.
+2.  **Optimized Data Fetching**: Utilizing TanStack Query's `useInfiniteQuery` for cursor-based pagination reduces server load and provides a snappy user experience.
+3.  **Secure by Design**: Auth tokens are never stored in `localStorage`. Instead, the API issues HttpOnly, Secure, and SameSite cookies, ensuring a high security posture.
 
-## Setup
+---
 
-1. Install dependencies:
-   ```bash
-   pnpm install
-   ```
-2. Create environment files for API and web app.
-3. Start both apps from repo root:
-   ```bash
-   pnpm dev
-   ```
+## ⚙️ Getting Started
 
-## Environment Variables
+### Prerequisites
+- Node.js >= 18
+- pnpm 9.x
+- PostgreSQL instance
+- Supabase project (for storage)
 
-### Backend (`apps/api`)
+### Installation
 
-Set at least:
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/streamflow.git
+    cd streamflow
+    ```
 
-- `DATABASE_URL`
-- `JWT_SECRET`
-- `WEB_ORIGIN` (usually `http://localhost:3000`)
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+2.  **Install dependencies**:
+    ```bash
+    pnpm install
+    ```
 
-Optional:
+3.  **Environment Setup**:
+    - Navigate to `apps/api/` and create a `.env` file based on `.env.example`.
+    - Navigate to `apps/web/` and create a `.env.local` file.
 
-- `JWT_COOKIE_NAME` (default: `access_token`)
-- `COOKIE_DOMAIN` (for production domain cookies)
+4.  **Database Migration**:
+    ```bash
+    pnpm --filter=api prisma migrate dev
+    ```
 
-### Frontend (`apps/web`)
+5.  **Run Development Servers**:
+    ```bash
+    pnpm dev
+    ```
+    - Web: `http://localhost:3000`
+    - API: `http://localhost:8000`
 
-Set at least:
+---
 
-- `NEXT_PUBLIC_API_URL` (default fallback: `http://localhost:8000/api/v1`)
-- `NEXT_PUBLIC_SUPABASE_URL`
+## 🗺 Roadmap
 
-## Useful Commands (run at repo root)
+- [ ] **Creator Dashboard**: Detailed analytics and video management for uploaders.
+- [ ] **Global Search**: Full-text search implementation for videos and channels.
+- [ ] **Watch History**: Cross-device playback history tracking.
+- [ ] **Transcoding Pipeline**: Automated video transcoding for adaptive bitrate streaming.
 
-```bash
-pnpm dev          # run all workspace dev servers
-pnpm build        # build all workspaces
-pnpm lint         # lint all workspaces
-pnpm check-types  # type-check all workspaces
-pnpm format       # format ts/tsx/md files
-```
+---
 
-Run a single app:
+## 📄 License
 
-```bash
-pnpm dev --filter=web
-pnpm dev --filter=api
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## API and Health Check
+---
 
-- API server: `http://localhost:8000`
-- Health endpoint: `GET /health`
-- Full API docs: `docs/backedn api documentation.md`
+Built with ❤️ by [Your Name]
