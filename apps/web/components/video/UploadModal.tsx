@@ -2,13 +2,13 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { 
-  UploadCloud, 
-  FileVideo, 
-  PlusCircle, 
-  LogIn, 
-  ImageIcon, 
-  X 
+import {
+  UploadCloud,
+  FileVideo,
+  PlusCircle,
+  LogIn,
+  ImageIcon,
+  X
 } from "lucide-react";
 
 import { useUIStore } from "@/store/useUIStore";
@@ -16,12 +16,12 @@ import { useAuthStore } from "@/store/auth/store";
 import { useUploadVideo } from "@/hooks/videos/useUploadVideo";
 import { useCreateChannel } from "@/hooks/channel/useCreateChannel";
 
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogDescription 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -32,24 +32,24 @@ import { getApiErrorMessage } from "@/lib/apiClient";
 
 export function UploadModal() {
   const router = useRouter();
-  
+
   // Store state
   const { isUploadModalOpen, closeUploadModal } = useUIStore();
   const { user, isLoggedIn } = useAuthStore();
-  
+
   // API Mutations
-  const { 
-    mutate: startUpload, 
-    isPending: isUploading, 
-    isError: isUploadError, 
-    error: uploadError, 
-    isSuccess: isUploadSuccess, 
-    reset: resetUpload 
+  const {
+    mutate: startUpload,
+    isPending: isUploading,
+    isError: isUploadError,
+    error: uploadError,
+    isSuccess: isUploadSuccess,
+    reset: resetUpload
   } = useUploadVideo();
-  
-  const { 
-    mutate: createChannel, 
-    isPending: isCreatingChannel 
+
+  const {
+    mutate: createChannel,
+    isPending: isCreatingChannel
   } = useCreateChannel();
 
   // Local UI state
@@ -232,7 +232,7 @@ export function UploadModal() {
             <AlertDescription>{validationError}</AlertDescription>
           </Alert>
         )}
-        
+
         {isUploadError && (
           <Alert variant="destructive">
             <AlertDescription>
@@ -336,17 +336,17 @@ export function UploadModal() {
 
           {/* Action Buttons */}
           <div className="flex gap-3 pt-2">
-            <Button 
-              type="button" 
-              variant="ghost" 
-              className="flex-1" 
-              onClick={closeUploadModal} 
+            <Button
+              type="button"
+              variant="ghost"
+              className="flex-1"
+              onClick={closeUploadModal}
               disabled={isUploading}
             >
               Cancel
             </Button>
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="flex-1"
               disabled={isUploading || !title.trim() || !file || !thumbnailFile}
             >

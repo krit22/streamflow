@@ -3,13 +3,12 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { Clock, Home, Library, PlaySquare, ThumbsUp } from "lucide-react"
+import { Clock, Home, PlaySquare, ThumbsUp } from "lucide-react"
 
 const navItems = [
   { label: "Home", href: "/feed", icon: Home },
   { label: "Subscriptions", href: "/subscriptions", icon: PlaySquare },
   { label: "History", href: "/history", icon: Clock },
-  { label: "Your videos", href: "#", icon: Library },
   { label: "Liked videos", href: "/liked-videos", icon: ThumbsUp },
 ]
 
